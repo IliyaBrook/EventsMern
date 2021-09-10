@@ -1,0 +1,63 @@
+.datepicker-modal {
+  height: auto;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show > .btn-success.dropdown-toggle {
+  color: #fff;
+  background-color: #26a69a !important;
+  border-color: white;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+
+.modal.modal-fixed-footer {
+  i {
+    cursor: default;
+    color: #0d47a1;
+  }
+}
+
+.timepicker-modal {
+  height: auto !important;
+}
+
+@media screen and (min-width: 768px) {
+  .modal.modal-fixed-footer {
+    top: 1% !important;
+    min-height: 95vh !important;
+  }
+}
+
+
+.curPointer {
+  cursor: pointer !important;
+}
+
+option{
+  background-color: whitesmoke;
+}
+.allUser{
+  span{
+    margin-right: 3px;
+  }
+  width: 80% !important;
+}
+.showRule{
+  span{
+    margin-right: 3px;
+  }
+}
+
+.accordingDescription{
+  color: black;
+  white-space: normal;
+  margin: 0!important;
+  padding: 0 !important;
+  font-size:15px!important;
+  line-height:180%;
+}

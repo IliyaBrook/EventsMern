@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/app.js" libraries="{@types/bcryptjs, @types/body-parser, @types/config, @types/express, @types/jest, @types/jsonwebtoken, @types/mongodb}" />
+    <file url="file://$PROJECT_DIR$/client" libraries="{@types/react-router-dom, HTML, HTTP Response Handler, bootstrap, materialize, react, react-bootstrap, react-dom}" />
+    <file url="file://$PROJECT_DIR$/config" libraries="{@types/bcryptjs, @types/body-parser, @types/config, @types/express, @types/jest, @types/jsonwebtoken, @types/mongodb, HTTP Response Handler}" />
+    <file url="file://$PROJECT_DIR$/models" libraries="{@types/bcryptjs, @types/body-parser, @types/config, @types/express, @types/jest, @types/jsonwebtoken, @types/mongodb}" />
+    <file url="file://$PROJECT_DIR$/routes" libraries="{@types/bcryptjs, @types/body-parser, @types/config, @types/express, @types/jest, @types/jsonwebtoken, @types/mongodb}" />
+    <file url="PROJECT" libraries="{@types/validator, jquery-3.2.1.slim, popper.js, tooltip.js}" />
+    <includedPredefinedLibrary name="Node.js Core" />
+  </component>
+</project>

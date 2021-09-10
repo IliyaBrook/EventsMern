@@ -1,0 +1,56 @@
+.carousel-wrapper,
+.carousel,
+.carousel > .slider-wrapper,
+.carousel > .slider-wrapper > .slider {
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.carouselImg {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+.navBarNotHome {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 2;
+}
+
+.btn-floating i {
+  text-align: unset;
+}
+
+.notAuthBorderWrapper{
+  position: absolute;
+  top: 15vh;
+  width: 100%;
+  .notAuthBorder{
+    padding: 3%;
+    background-color: rgba(2, 2, 2, 0.4);
+    .regHeader{
+      margin-left: 6%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .regBtn{
+    margin: 2% 0 0 8%;
+  }
+  .notRegText{
+    p{
+      margin:0!important;
+    }
+  }
+}
+
+
+
+
+
+
+
+

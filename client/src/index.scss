@@ -1,0 +1,58 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~materialize-css/sass/materialize";
+html, body {
+  margin: 0;
+  height: 100%;
+  width: auto;
+  overflow:auto;
+  padding:0!important;
+}
+
+
+h1 {
+  color: blue;
+}
+
+.custom-control {
+  padding: 0;
+}
+
+.fc-content {
+  color: white;
+  height: 100% !important;
+  width: 130% !important;
+}
+.sidenav-overlay {
+  position: fixed !important;
+  left: 301px;
+  background-color: transparent !important;
+}
+.modal-overlay {
+  background-color: transparent !important;
+}
+
+.form-switch {
+  padding-left: 0 !important;
+}
+
+
+//materialize fixed
+.toast {
+  border-radius: 2px !important;
+  width: auto !important;
+  margin-top: 10px !important;
+  position: relative !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 48px !important;
+  line-height: 1.5em !important;
+  background-color: #323232 !important;
+  padding: 10px 25px !important;
+  font-size: 1.1rem !important;
+  font-weight: 300 !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: default !important;
+}
