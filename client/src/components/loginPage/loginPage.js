@@ -7,6 +7,7 @@ import {
 	UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD
 } from "../../redux/login/loginTypes"
 import './loginPage.scss'
+import spinner from "../loaders/spinner"
 
 
 const LoginPage = () => {
@@ -14,18 +15,22 @@ const LoginPage = () => {
 	const {
 		emailError, emailClassName, passwordError, passwordClassName
 	} = useSelector(state => state.loginReducer.loginErrors)
-	
+	const {isLoading, loginInputsControls: { email:email, password: password }} = useSelector(state => state.loginReducer)
 	const {inputHandler, input} = useFormHandler({
 		inputEmail: '',
 		inputPassword: '',
 	})
 	useEffect(() => {
-		dispatch({type:UPDATE_LOGIN_INPUT_CONTROLS_EMAIL, payload: input.inputEmail})
-		dispatch({type:UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD, payload: input.inputPassword})
-	},[input])
+		dispatch({type: UPDATE_LOGIN_INPUT_CONTROLS_EMAIL, payload: input.inputEmail})
+		dispatch({type: UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD, payload: input.inputPassword})
+	}, [input])
 	const formSubmit = async (event) => {
 		event.preventDefault()
-		dispatch({type:REQUEST_LOGIN})
+		dispatch({type: REQUEST_LOGIN})
+	}
+	
+	if (isLoading) {
+		return spinner
 	}
 	return (
 		<form noValidate onSubmit={formSubmit}>
@@ -38,6 +43,7 @@ const LoginPage = () => {
 						       id="email"
 						       onChange={inputHandler}
 						       autoComplete="email"
+						       value={email}
 						/>
 						<label htmlFor="email">Email</label>
 						<span className="helper-text"
@@ -53,6 +59,7 @@ const LoginPage = () => {
 						       name="inputPassword" autoComplete="no"
 						       id="password"
 						       onChange={inputHandler}
+						       value={password}
 						/>
 						<label htmlFor="password">Password</label>
 						<span className="helper-text"

@@ -8,7 +8,7 @@ import {
 	SET_REGISTRATION_INPUTS_NAME,
 	SET_REGISTRATION_INPUTS_PASSWORD
 } from "../../redux/registration/registrationTypes"
-import spinner from "../loaders/spinner";
+import spinner from "../loaders/spinner"
 
 
 const RegisterPage = () => {

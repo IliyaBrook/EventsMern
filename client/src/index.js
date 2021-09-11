@@ -13,7 +13,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {rootReducer} from './redux/rootReducer'
 import {createBrowserHistory} from 'history'
 import createSagaMiddleware from 'redux-saga'
-import {rootSaga} from './redux/sagas/sagas'
+import {rootSaga} from './redux/sagas/rootSaga'
 
 const saga = createSagaMiddleware()
 const browserHistory = createBrowserHistory()

@@ -1,12 +1,13 @@
 import {call, put, select, take} from "redux-saga/effects";
 import {io} from "socket.io-client";
-import {socketChannelEvents} from "./socketChannelEvents";
+import {socketChannel} from "./socketChannel";
 import {SOCKET_ADD_EVENT, SOCKET_DELETE_EVENT, SOCKET_UPDATE_EVENT} from "../../social/socialTypes";
 
 export function* socketChannelSaga() {
 	const {token} = yield select(state => state.loginReducer)
 	const socket = io({auth: {token}, reconnectionAttempts: 5})
-	const socketChannel = yield call(socketChannelEvents, socket)
+	
+	const socketChannel = yield call(socketChannel, socket)
 	
 	while (true) {
 		try {

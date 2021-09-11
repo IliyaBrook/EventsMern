@@ -1,7 +1,10 @@
 import {
 	ADD_SOCKET_ID,
 	CLEAR_LOGIN_ERRORS,
+	CLEAR_LOGIN_STATE,
 	LOG_OUT,
+	LOGIN_DATA_LOADING_FALSE,
+	LOGIN_DATA_LOADING_TRUE,
 	SET_LOGIN_DATA,
 	SET_LOGIN_ERRORS,
 	UPDATE_LOGIN_INPUT_CONTROLS_EMAIL,
@@ -32,7 +35,11 @@ export const loginReducer = (state = initialStateLogin, action) => {
 		case ADD_SOCKET_ID:
 			return {...state, socketId: action.payload}
 		case SET_LOGIN_DATA:
-			return {...state, ...action.payload}
+			return {...initialStateLogin,
+				email: action.payload.email, name:action.payload.name,
+				role: action.payload.role, token: action.payload.token,
+				isAuth: action.payload.isAuth
+			}
 		case LOG_OUT:
 			return {...state, ...initialStateLogin, isAuth: action.payload}
 		case SET_LOGIN_ERRORS:
@@ -43,6 +50,12 @@ export const loginReducer = (state = initialStateLogin, action) => {
 			return {...state, loginInputsControls: {...state.loginInputsControls, email: action.payload}}
 		case UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD:
 			return {...state, loginInputsControls: {...state.loginInputsControls, password: action.payload }}
+		case CLEAR_LOGIN_STATE:
+			return {...initialStateLogin}
+		case LOGIN_DATA_LOADING_TRUE:
+			return {...state, isLoading: true}
+		case LOGIN_DATA_LOADING_FALSE:
+			return {...state, isLoading: false}
 		default:
 			return state
 	}

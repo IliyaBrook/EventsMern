@@ -9,10 +9,10 @@ export const loginErrorsMiddleware = ({dispatch, getState}) => {
 			if (action.type === REQUEST_LOGIN) {
 				dispatch({
 					type: SET_LOGIN_ERRORS, payload: {
-						emailError: validator.isEmail(email) ? null : 'Please enter your email',
-						emailClassName: validator.isEmail(email) ? null : 'invalid',
-						passwordError: validator.isLength(password, {min: 5}) ? null : 'Please enter your password',
-						passwordClassName: validator.isLength(password, {min: 5}) ? null : 'invalid'
+						emailError: validator.isEmail(email) ? 'valid' : 'Please enter valid email address',
+						emailClassName: validator.isEmail(email) ? 'valid' : 'invalid',
+						passwordError: validator.isLength(password, {min: 5}) ? 'valid' : 'Please enter your password',
+						passwordClassName: validator.isLength(password, {min: 5}) ? 'valid' : 'invalid'
 					}
 				})
 			}

@@ -1,9 +1,9 @@
 import {END, eventChannel} from "redux-saga";
 
-export function socketChannelEvents(socket) {
+export function socketChannel(socket) {
 	socket.on('disconnect', () => {
 		socket.connect()
-		console.log('socket disconnected: ')
+		console.log('socket disconnected: ', socket)
 	})
 	
 	return eventChannel(emitter => {

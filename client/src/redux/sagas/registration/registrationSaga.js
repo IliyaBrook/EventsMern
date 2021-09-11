@@ -1,5 +1,6 @@
 import {call, delay, put, select, takeEvery} from 'redux-saga/effects'
-import useRequest from "../../../hooks/useRequest";
+import useRequest from "../../../hooks/useRequest"
+import {push} from 'react-router-redux'
 import {
 	CLEAR_INPUT_CONTROLS,
 	CLEAR_REGISTRATION_ERRORS,
@@ -7,9 +8,9 @@ import {
 	REGISTRATION_LOADING_TRUE,
 	REQUEST_REGISTRATION
 } from '../../registration/registrationTypes'
-import {push} from 'react-router-redux'
 
-export function* registrationSagaWatcher() {
+
+export function* registrationSaga() {
 	yield takeEvery(REQUEST_REGISTRATION, registrationSagaWorkerResetErrors)
 	yield takeEvery(REQUEST_REGISTRATION, SagaWorkerFetchRegistrationData)
 }
