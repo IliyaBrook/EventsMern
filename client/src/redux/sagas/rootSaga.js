@@ -1,11 +1,16 @@
-import {all, call} from 'redux-saga/effects'
-import {registrationSaga} from "./registration/registrationSaga";
-import {loginSaga} from "./login/loginSaga"
+import {all, fork} from 'redux-saga/effects'
+import {registrationSagaWatcher} from "./registration/registrationSagaWatcher";
+import {loginSagaWatcher} from "./login/loginSagaWatcher"
+import {refreshSagaWorker} from "./refreshData/refreshSagaWorker"
+import {profilePageModalWatcher} from "./profilePageModal/profilePageModalWatcher"
+
 
 export function* rootSaga() {
 	yield all([
-		// call(socketChannelSaga),
-		call(registrationSaga), call(loginSaga)
+		fork(refreshSagaWorker),
+		fork(loginSagaWatcher),
+		fork(registrationSagaWatcher),
+		fork(profilePageModalWatcher),
 	])
 }
 

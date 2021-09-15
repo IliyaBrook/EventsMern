@@ -1,17 +1,28 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Carousel from '../styled/carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import './homePage.scss'
 import {useDispatch} from 'react-redux'
 import {push} from 'react-router-redux'
+import {REFRESH_DATA} from "../../redux/login/loginTypes"
 
 const HomePageNotAuth = () => {
-	const dispatch = useDispatch()
+	// const [carouselReady, setCarouselReady] = useState(false)
 	
+	const [homePageReady, setHomePageReady] = useState(false)
+	useEffect(() => {
+		dispatch({type: REFRESH_DATA})
+		setHomePageReady(true)
+	}, [])
+	
+	
+	// const [loading, setLoading ] = useState(false)
+	// useEffect(() => setLoading(true),[])
+	const dispatch = useDispatch()
 	const redirectEvent = (e) => {
 		switch (e.target.id) {
 			case 'register':
-				return dispatch(push('/register'))
+				return dispatch(push('/registration'))
 			case 'login':
 				return dispatch(push('/login'))
 		}
@@ -19,6 +30,7 @@ const HomePageNotAuth = () => {
 	return (
 		<div>
 			<Carousel/>
+			{homePageReady ? <Carousel/> : <div/>}
 			<div className="notAuthBorderWrapper justify-content-center d-flex ">
 				<div className="section"/>
 				<div className="notAuthBorder rounded">
@@ -48,7 +60,7 @@ const HomePageNotAuth = () => {
 								<div className="flow-text text-center">
 									<p>You are welcome to take part in any event</p>
 									<p>you can find here in our virtual Social City</p>
-									<p>  Enjoy the variety of possibilities to have fun</p>
+									<p> Enjoy the variety of possibilities to have fun</p>
 									<p>See you soon!</p>
 								</div>
 							</div>

@@ -3,59 +3,61 @@ import {
 	CLEAR_LOGIN_ERRORS,
 	CLEAR_LOGIN_STATE,
 	LOG_OUT,
-	LOGIN_DATA_LOADING_FALSE,
-	LOGIN_DATA_LOADING_TRUE,
+	LOGIN_LOADING_FALSE,
+	LOGIN_LOADING_TRUE,
 	SET_LOGIN_DATA,
 	SET_LOGIN_ERRORS,
-	UPDATE_LOGIN_INPUT_CONTROLS_EMAIL,
-	UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD
-} from "./loginTypes";
+	SET_SOCKET_CONNECTED_AND_ID,
+	UPDATE_LOGIN_INPUTS
+} from "./loginTypes"
 
 export const initialStateLogin = {
+	isSocketConnected:false,
+	socketId:null,
 	email: null,
 	name: null,
 	token: null,
 	isAuth: false,
 	role: null,
-	socketId:'',
 	loginErrors:{
 		emailError: null,
 		emailClassName: null,
 		passwordError: null,
 		passwordClassName: null,
-	},
-	isLoading:false
-	,loginInputsControls:{
+	}
+	,inputs:{
 		email:'',
 		password:''
-	}
+	},
+	loading:false
 }
 export const loginReducer = (state = initialStateLogin, action) => {
 	switch (action.type) {
 		case ADD_SOCKET_ID:
 			return {...state, socketId: action.payload}
 		case SET_LOGIN_DATA:
-			return {...initialStateLogin,
+			return {...state,
 				email: action.payload.email, name:action.payload.name,
 				role: action.payload.role, token: action.payload.token,
 				isAuth: action.payload.isAuth
 			}
 		case LOG_OUT:
-			return {...state, ...initialStateLogin, isAuth: action.payload}
+			return {...initialStateLogin}
 		case SET_LOGIN_ERRORS:
 			return {...state, loginErrors: {...state.loginErrors, ...action.payload}}
 		case CLEAR_LOGIN_ERRORS	:
 			return {...state, loginErrors: {...initialStateLogin.loginErrors}}
-		case UPDATE_LOGIN_INPUT_CONTROLS_EMAIL:
-			return {...state, loginInputsControls: {...state.loginInputsControls, email: action.payload}}
-		case UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD:
-			return {...state, loginInputsControls: {...state.loginInputsControls, password: action.payload }}
+		case UPDATE_LOGIN_INPUTS:
+			return {...state, inputs: {...action.payload}}
 		case CLEAR_LOGIN_STATE:
 			return {...initialStateLogin}
-		case LOGIN_DATA_LOADING_TRUE:
-			return {...state, isLoading: true}
-		case LOGIN_DATA_LOADING_FALSE:
-			return {...state, isLoading: false}
+		case SET_SOCKET_CONNECTED_AND_ID:
+			return {...state, ...action.payload}
+		
+		case LOGIN_LOADING_TRUE:
+			return {...state, loading: true}
+		case LOGIN_LOADING_FALSE:
+			return {...state, loading: false}
 		default:
 			return state
 	}

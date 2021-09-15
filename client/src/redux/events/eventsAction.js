@@ -1,19 +1,17 @@
 import useRequest from "../../hooks/useRequest"
-// import {logoutAction} from "../login/loginActions"
-import {REFRESH_EVENTS} from "./eventsTypes"
 
-export const refreshActionEvents = () => {
-	return async (dispatch, getState) => {
-		const token = getState().loginReducer.token
-		const data = await useRequest('/refreshEvents','GET',null, token)
-		if (data.message === "not authorization") {
-			dispatch(logoutAction())
-			return new Error(data.message)
-		}
-		return dispatch({type: REFRESH_EVENTS,payload:[...data]})
-	}
-}
-
+// export const refreshActionEvents = () => {
+// 	return async (dispatch, getState) => {
+// 		const token = getState().loginReducer.token
+// 		const data = await useRequest('/refreshEvents','GET',null, token)
+// 		if (data.message === "not authorization") {
+// 			dispatch(logoutAction())
+// 			return new Error(data.message)
+// 		}
+// 		return dispatch({type: REFRESH_EVENTS,payload:[...data]})
+// 	}
+// }
+//
 
 export const createEventSubmitAction = (clearInputFunc = null) => {
 	return async (dispatch, getState) => {

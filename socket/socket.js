@@ -15,11 +15,11 @@ module.exports = (io) => {
 	})
 	
 	io.on('connection', socket => {
-		console.log('user connected,:', socket.id)
 		const token = socket.handshake.auth.token
 		const {name, email} = jwt.verify(token, config.get('jwtSecret'))
 		console.log(`user name: ${name}, user email: ${email}`)
-		socket.emit('messageTest', 'this is test message')
+		
+		socket.emit('testMessage', 'message')
 		
 		socket.emit('socketId', socket.id)
 		socket.on('userConnected', async data => {
@@ -27,7 +27,7 @@ module.exports = (io) => {
 			socket.join('room1')
 			const allUsersSet = await io.in('room1').allSockets()
 			const allUsersArray = [...new Array(...allUsersSet)]
-			
+			console.log(allUsersArray)
 			io.to('room1').emit('allConnected', allUsersArray)
 		})
 		

@@ -4,8 +4,8 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import thunk from "redux-thunk"
 import './index.scss'
-import {loginErrorsMiddleware} from "./redux/middleware/loginMiddleware"
-import {showRegistrationAlertMiddleware} from "./redux/middleware/registrationMiddleware"
+import {loginFormMiddleware} from "./redux/middleware/loginFormMiddleware"
+import {registrationFormMiddleware} from "./redux/middleware/registrationFormMiddleware"
 import App from "./app";
 import {routerMiddleware, syncHistoryWithStore} from 'react-router-redux'
 import {Router} from 'react-router'
@@ -25,8 +25,9 @@ const composeEnhancers = composeWithDevTools({
 
 const store = createStore(rootReducer, composeEnhancers(
 	applyMiddleware(
-		thunk, middlewareRouting, showRegistrationAlertMiddleware,
-		loginErrorsMiddleware, saga
+		thunk, middlewareRouting,saga,
+		registrationFormMiddleware,
+		loginFormMiddleware
 	)
 ))
 const history = syncHistoryWithStore(browserHistory, store)

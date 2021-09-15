@@ -34,7 +34,7 @@ const NavBarNotAuth = () => {
 					</div>
 					<ul className="right">
 						<li>
-							<Link to="/register">Register</Link>
+							<Link to="/registration">Register</Link>
 						</li>
 						
 						<li>
@@ -46,7 +46,7 @@ const NavBarNotAuth = () => {
 			
 			<ul className="sidenav" id="slide-out" ref={sideNavRef}>
 				<li>
-					<Link to="/register">Register</Link>
+					<Link to="/registration">Register</Link>
 				</li>
 				<li>
 					<Link to="/login" className="pr-4">Login</Link>

@@ -6,13 +6,14 @@ import {logoutAction} from '../../redux/login/loginActions'
 import {useSidenavInitCollapse} from "../../hooks/useSidenavInitCollapse";
 
 const NavBarAuth = ({userData, logoutAction}) => {
-	const profileModalRef = useRef()
 	const history = useHistory()
 	const sideNavTrigger = useRef()
 	const dropDownProfile = useRef()
+	
 	useEffect(() => {
 		window.M.Dropdown.init(dropDownProfile.current)
-		window.M.Modal.init(profileModalRef.current)
+		const modalElem = document.querySelectorAll('.modal')
+		window.M.Modal.init(modalElem)
 	}, [])
 	useSidenavInitCollapse(sideNavTrigger)
 	
@@ -22,15 +23,10 @@ const NavBarAuth = ({userData, logoutAction}) => {
 		localStorage.clear()
 	}
 	
-
+	
 	return (
 		<div>
-
-			
-			
-			
 			<nav>
-				
 				<div className="nav-wrapper #607d8b blue-grey darken-3">
 					<ul className="left hide-on-med-and-down">
 						<li>
@@ -61,12 +57,11 @@ const NavBarAuth = ({userData, logoutAction}) => {
 							>menu</i>
 						</li>
 					</ul>
-					<ProfilePageModal props={{profileModalRef}}/>
+					<ProfilePageModal/>
 					<ul id='dropdown1' className='dropdown-content'>
 						<li>
 							<a className="waves-effect waves-light modal-trigger"
-							   data-target="modal1"
-							>Profile</a>
+							   data-target="modal1">Profile</a>
 						</li>
 						<li>
 							<a className="red-text" onClick={logOut}>Logout</a>

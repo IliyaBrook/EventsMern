@@ -1,12 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
-import {Carousel as ReactResponsiveCarousel} from "react-responsive-carousel"
+import {Carousel as CarouselSettings} from "react-responsive-carousel"
 import {useSelector} from "react-redux";
 
-const StyledCarousel = styled(ReactResponsiveCarousel)`
 
-`
 const Carousel = (props) => {
+	
 	const widthState = useSelector(state => state.windowSizeReducer.width)
 	
 	const imageRender = (path, numbersOfImages) => {
@@ -30,17 +28,17 @@ const Carousel = (props) => {
 		}
 	}
 	return (
-		<StyledCarousel showThumbs={false}
-		                showIndicators={false}
-		                showStatus={false}
-		                showArrows={false}
-		                autoPlay={true}
-		                interval={7000}
-		                infiniteLoop={true}
-		                {...props}
+		<CarouselSettings showThumbs={false}
+		                  showIndicators={false}
+		                  showStatus={false}
+		                  showArrows={false}
+		                  autoPlay={true}
+		                  interval={7000}
+		                  infiniteLoop={true}
+		                  {...props}
 		>
 			{renderImgByWidth()}
-		</StyledCarousel>
+		</CarouselSettings>
 	)
 }
 

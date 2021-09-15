@@ -12,7 +12,7 @@ const middlewareRegValidate = [
 	body('email', 'Email cannot be empty').isLength({min:1})
 ]
 
-router.post('/register',middlewareRegValidate
+router.post('/registration',middlewareRegValidate
 	, async (req, res) => {
 		try {
 			const errors = validationResult(req).array()

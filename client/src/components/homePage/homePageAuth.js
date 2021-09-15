@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Carousel from "../styled/carousel";
 
 
 const HomePageAuth = () => {
-	
+	const [carouselReady, setCarouselReady] = useState(false)
+	useEffect(() => {
+		setCarouselReady(true)
+	}, [])
 	return (
 		<>
-			<Carousel/>
+			{carouselReady ? <Carousel/> : <div/>}
 		</>
 	)
 }

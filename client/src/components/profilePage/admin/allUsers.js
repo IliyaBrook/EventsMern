@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Button, Form} from "react-bootstrap";
-import {deleteUserAction, setRoleAction} from "../../../redux/profilePage/admin/userManagment/userManagmentAction";
+import {Button, Form} from "react-bootstrap"
+import {deleteUserAction, setRoleAction} from "../../../redux/profilePage/admin/userManagment/userManagmentAction"
 import '../profilePage.scss'
 
 
@@ -9,7 +9,8 @@ const AllUsers = () => {
 	const [filterInput, setFilterInput] = useState('')
 	
 	const dispatch = useDispatch()
-	const users = useSelector(state => state?.userManagmentReducer.users)
+	const users = useSelector(state => state.profileModalReducer.users)
+	
 	
 	const showUsers = () => {
 		const setRole = (event, role = 'user') => {
@@ -18,7 +19,7 @@ const AllUsers = () => {
 			return dispatch(setRoleAction(email, role, index))
 		}
 		
-		return users?.filter(user => user.name.toLowerCase().includes(filterInput)).map((user, index) => {
+		return users.filter(user => user.name.toLowerCase().includes(filterInput)).map((user, index) => {
 			const deleteUserEvent = (event) => {
 				return dispatch(deleteUserAction(event.target.id))
 			}

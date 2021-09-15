@@ -1,37 +1,29 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import useFormHandler from "../../hooks/formHandler.hook"
-import {
-	REQUEST_LOGIN,
-	UPDATE_LOGIN_INPUT_CONTROLS_EMAIL,
-	UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD
-} from "../../redux/login/loginTypes"
+import {REQUEST_LOGIN, UPDATE_LOGIN_INPUTS} from "../../redux/login/loginTypes"
 import './loginPage.scss'
-import spinner from "../loaders/spinner"
 
 
 const LoginPage = () => {
+	useEffect(() => {window.M.updateTextFields()})
 	const dispatch = useDispatch()
 	const {
-		emailError, emailClassName, passwordError, passwordClassName
-	} = useSelector(state => state.loginReducer.loginErrors)
-	const {isLoading, loginInputsControls: { email:email, password: password }} = useSelector(state => state.loginReducer)
+		loginErrors:{emailError, emailClassName, passwordError, passwordClassName},
+		inputs:{email, password}
+	} = useSelector(state => state.loginReducer)
 	const {inputHandler, input} = useFormHandler({
-		inputEmail: '',
-		inputPassword: '',
+		email: '',
+		password: '',
 	})
 	useEffect(() => {
-		dispatch({type: UPDATE_LOGIN_INPUT_CONTROLS_EMAIL, payload: input.inputEmail})
-		dispatch({type: UPDATE_LOGIN_INPUT_CONTROLS_PASSWORD, payload: input.inputPassword})
+		dispatch({type: UPDATE_LOGIN_INPUTS, payload: input})
 	}, [input])
 	const formSubmit = async (event) => {
 		event.preventDefault()
-		dispatch({type: REQUEST_LOGIN})
+		return dispatch({type: REQUEST_LOGIN})
 	}
 	
-	if (isLoading) {
-		return spinner
-	}
 	return (
 		<form noValidate onSubmit={formSubmit}>
 			<div className="container p-xl-5 mt-5">
@@ -39,7 +31,7 @@ const LoginPage = () => {
 					<div className="input-field col s6 offset-xl6 pull-xl3">
 						<input type="email"
 						       className={emailClassName}
-						       name="inputEmail"
+						       name="email"
 						       id="email"
 						       onChange={inputHandler}
 						       autoComplete="email"
@@ -56,7 +48,7 @@ const LoginPage = () => {
 					<div className="input-field col s6 offset-xl6 pull-xl3">
 						<input type="password"
 						       className={passwordClassName}
-						       name="inputPassword" autoComplete="no"
+						       name="password" autoComplete="no"
 						       id="password"
 						       onChange={inputHandler}
 						       value={password}

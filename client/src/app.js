@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Switch from "react-bootstrap/Switch"
 import {Redirect, Route} from "react-router-dom"
 import NavBarNotAuth from "./components/navBar/navBarNotAuth"
@@ -9,32 +9,30 @@ import LoginPage from "./components/loginPage/loginPage"
 import HomePageNotAuth from "./components/homePage/homePageNotAuth"
 import HomePageAuth from "./components/homePage/homePageAuth"
 import EventCalendar from "./components/events/calendar/eventCalendar"
-import {useDispatch} from 'react-redux'
-import {refreshUserAction} from "./redux/login/loginActions"
-import {windowSizeAction} from "./redux/toolsStates/windowSizeReducer";
-
+import {useDispatch, useSelector} from 'react-redux'
+import Spinner from "./components/styled/spinner"
 
 export const App = () => {
-	const storageData = JSON.parse(localStorage.getItem('userData'))
 	const dispatch = useDispatch()
-	useEffect(() => {
-		dispatch(windowSizeAction())
-		dispatch(refreshUserAction())
-	}, [])
+	
+	const {
+		loginReducer:{loading: loginLoading,isAuth},
+		registrationReducer:{loading:registrationLoading},
+		homePageReducer:{ loading: homePageLoading }
+	} = useSelector(state => state)
 	
 	
-	const isToken = !!storageData?.token
 	
-	switch (isToken) {
+	switch (isAuth) {
 		case true:
 			return (
 				<Switch>
 					<NavBarAuth/>
 					<Route exact path="/">
-						<HomePageAuth/>
+						{homePageLoading ? <Spinner widht="100" height="50vh"/> : <HomePageAuth/>}
 					</Route>
 					<Route exact path="/events">
-						<EventCalendar/>
+						{homePageLoading ? <Spinner widht="100" height="50vh"/> : <EventCalendar/>}
 					</Route>
 				</Switch>
 			)
@@ -42,12 +40,12 @@ export const App = () => {
 			return (
 				<Switch>
 					<NavBarNotAuth/>
-					<Route path="/register" exact>
-						<RegisterPage/>
+					<Route path="/registration" exact>
+						{registrationLoading ? <Spinner widht="100" height="50vh"/>: <RegisterPage/>}
 					</Route>
 					<Redirect to="/" exact/>
 					<Route path="/login" exact>
-						<LoginPage/>
+						{loginLoading ? <Spinner widht="100" height="50vh"/> : <LoginPage/>}
 					</Route>
 					<Route path="/" exact>
 						<HomePageNotAuth/>
@@ -55,6 +53,5 @@ export const App = () => {
 				</Switch>
 			)
 	}
-	
 }
 export default App

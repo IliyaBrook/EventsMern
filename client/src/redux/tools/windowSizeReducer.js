@@ -1,4 +1,4 @@
-import {WINDOW_WIDTH} from "./toolsStatesStypes";
+import {WINDOW_WIDTH} from "./toolsTypes";
 
 const windowSizeReducerInit = {
 	width:document.body.clientWidth

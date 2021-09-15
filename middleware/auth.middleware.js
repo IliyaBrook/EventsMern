@@ -14,6 +14,6 @@ module.exports = (req, res, next) => {
 		req.user = jwt.verify(token, config.get('jwtSecret'))
 		next()
 	} catch {
-		return res.status(401).json({message: 'not authorization'})
+		return res.status(401).json({message: 'not authorized'})
 	}
 }
