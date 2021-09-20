@@ -34,7 +34,7 @@
     "history": "^4.10.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.9",
-    "mongoose": "^5.13.9",
+    "mongoose": "^6.0.6",
     "node": "^14.17.1",
     "react-bootstrap": "^1.6.3",
     "socket.io": "^4.2.0",
