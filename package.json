@@ -38,7 +38,8 @@
     "node": "^14.17.1",
     "react-bootstrap": "^1.6.3",
     "socket.io": "^4.2.0",
-    "validator": "^13.6.0"
+    "validator": "^13.6.0",
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "mongoose": "^5.12.15",

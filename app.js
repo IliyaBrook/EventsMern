@@ -3,14 +3,14 @@ const config = require('config')
 const mongoose = require('mongoose')
 const path = require('path')
 const bodyParser = require('body-parser')
+const {Server} = require("socket.io")
 const app = express()
-const server = require('http').Server(app)
-//socketIo
-// const webSocketServer = require('http')
-// webSocketServer.Server(app)
-
-io = require('socket.io')(server)
+const server = require('http').createServer(app)
+const ws = require('ws')
+//webSocketServer
+io = new Server(server, {wsEngine: ws.Server})
 require('./socket/socket')(io)
+//
 
 
 app.use(bodyParser.json({extended: true}))

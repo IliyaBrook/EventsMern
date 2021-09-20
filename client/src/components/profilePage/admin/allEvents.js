@@ -63,7 +63,10 @@ const AllEvents = () => {
 							}
 							{
 								event.subscriptions.length > 0 && (
-									<AccordionDropDown header="Subscription" wrapMargin="3% 0 0 0">
+									<AccordionDropDown
+										header="Subscription" wrapMargin="3% 0 0 0"
+										toggleHeight="3rem"
+									>
 										<div>
 											{event.subscriptions.map((subs, index) => {
 												return (
@@ -85,17 +88,21 @@ const AllEvents = () => {
 							}
 							
 							
-							<AccordionDropDown header="Created By" wrapMargin="2% 0 0 0">
+							<AccordionDropDown header="Created By"
+							                   wrapMargin="2% 0 0 0"
+							                   toggleHeight="3rem"
+							>
 								<ListGroup.Item>Name: {event.createdBy.name}</ListGroup.Item>
 								<ListGroup.Item>Email: {event.createdBy.email}</ListGroup.Item>
 							</AccordionDropDown>
 							
-							<AccordionDropDown header="Event Description" display="block"
-							                   wrapMargin="2% 0 0 0" padding="2%">
+							<AccordionDropDown
+								header="Event Description" display="block"
+								wrapMargin="2% 0 0 0" padding="2%"
+								toggleHeight="3rem"
+							>
 								<p className="accordingDescription">{event.eventDescription}</p>
 							</AccordionDropDown>
-							
-							
 						</div>
 						<div className="card-action">
 							<Button className="red" id={event._id} onClick={deleteEventHandler}>Delete</Button>
