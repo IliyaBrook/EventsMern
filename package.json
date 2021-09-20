@@ -24,6 +24,7 @@
   "author": "Iliya brook <iliyabrook1987@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^5.13.9",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^5.0.2",
@@ -42,7 +43,6 @@
     "ws": "^7.4.6"
   },
   "devDependencies": {
-    "mongoose": "^5.13.9",
     "nodemon": "^2.0.7",
     "webpack-cli": "^4.8.0"
   }
