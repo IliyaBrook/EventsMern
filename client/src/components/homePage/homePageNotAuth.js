@@ -4,20 +4,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 import './homePage.scss'
 import {useDispatch} from 'react-redux'
 import {push} from 'react-router-redux'
-import {REFRESH_DATA} from "../../redux/login/loginTypes"
 
 const HomePageNotAuth = () => {
-	// const [carouselReady, setCarouselReady] = useState(false)
 	
-	const [homePageReady, setHomePageReady] = useState(false)
+	const [carouselReady, setCarouselReady] = useState(false)
 	useEffect(() => {
-		dispatch({type: REFRESH_DATA})
-		setHomePageReady(true)
+		setCarouselReady(true)
 	}, [])
 	
-	
-	// const [loading, setLoading ] = useState(false)
-	// useEffect(() => setLoading(true),[])
 	const dispatch = useDispatch()
 	const redirectEvent = (e) => {
 		switch (e.target.id) {
@@ -30,7 +24,7 @@ const HomePageNotAuth = () => {
 	return (
 		<div>
 			<Carousel/>
-			{homePageReady ? <Carousel/> : <div/>}
+			{carouselReady ? <Carousel/> : <div/>}
 			<div className="notAuthBorderWrapper justify-content-center d-flex ">
 				<div className="section"/>
 				<div className="notAuthBorder rounded">

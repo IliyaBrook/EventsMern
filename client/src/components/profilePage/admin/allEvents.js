@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import {Button, Form, ListGroup} from "react-bootstrap";
+import {Button, Form, ListGroup} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
 import './admin.scss'
-import {deleteEvent, deleteSubscriptionAction} from "../../../redux/events/eventsAction"
+import {deleteEvent} from "../../../redux/events/eventsAction"
 import {AccordionDropDown} from "../../styled/accordion"
 
 const AllEvents = () => {
@@ -11,11 +11,16 @@ const AllEvents = () => {
 	const dispatch = useDispatch()
 	
 	const allEventsRender = () => {
+		
 		const deleteEventHandler = (e) => {
 			return dispatch(deleteEvent(e.target.id))
 		}
-		return eventsState.events.filter(event =>
+		
+		
+		return eventsState?.events.filter(event =>
 			event.eventName.toLowerCase().includes(filterInput))?.map((event, index) => {
+			
+			
 			return <div className="row" key={index + 1}>
 				<div className="col s12 m6">
 					<div className="card blue-grey darken-1">
@@ -78,6 +83,8 @@ const AllEvents = () => {
 									</AccordionDropDown>
 								)
 							}
+							
+							
 							<AccordionDropDown header="Created By" wrapMargin="2% 0 0 0">
 								<ListGroup.Item>Name: {event.createdBy.name}</ListGroup.Item>
 								<ListGroup.Item>Email: {event.createdBy.email}</ListGroup.Item>
@@ -87,6 +94,8 @@ const AllEvents = () => {
 							                   wrapMargin="2% 0 0 0" padding="2%">
 								<p className="accordingDescription">{event.eventDescription}</p>
 							</AccordionDropDown>
+							
+							
 						</div>
 						<div className="card-action">
 							<Button className="red" id={event._id} onClick={deleteEventHandler}>Delete</Button>
@@ -103,7 +112,9 @@ const AllEvents = () => {
 					<Form.Label>Search</Form.Label>
 					<Form.Control
 						type="text" placeholder="Type text filter events"
-						onChange={e => {setFilterInput(e.target.value)}}
+						onChange={e => {
+							setFilterInput(e.target.value)
+						}}
 					/>
 				</Form.Group>
 				<div>

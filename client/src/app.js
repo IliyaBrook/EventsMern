@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Switch from "react-bootstrap/Switch"
 import {Redirect, Route} from "react-router-dom"
 import NavBarNotAuth from "./components/navBar/navBarNotAuth"
@@ -14,6 +14,7 @@ import Spinner from "./components/styled/spinner"
 
 export const App = () => {
 	const dispatch = useDispatch()
+	useEffect(() => dispatch({type:'ENTER_PAGE'}),[])
 	
 	const {
 		loginReducer:{loading: loginLoading,isAuth},
@@ -22,17 +23,16 @@ export const App = () => {
 	} = useSelector(state => state)
 	
 	
-	
 	switch (isAuth) {
 		case true:
 			return (
 				<Switch>
 					<NavBarAuth/>
 					<Route exact path="/">
-						{homePageLoading ? <Spinner widht="100" height="50vh"/> : <HomePageAuth/>}
+						<HomePageAuth/>
 					</Route>
 					<Route exact path="/events">
-						{homePageLoading ? <Spinner widht="100" height="50vh"/> : <EventCalendar/>}
+						<EventCalendar/>
 					</Route>
 				</Switch>
 			)
@@ -41,14 +41,14 @@ export const App = () => {
 				<Switch>
 					<NavBarNotAuth/>
 					<Route path="/registration" exact>
-						{registrationLoading ? <Spinner widht="100" height="50vh"/>: <RegisterPage/>}
+						{registrationLoading ? <Spinner position="absolute"/> : <RegisterPage/>}
 					</Route>
 					<Redirect to="/" exact/>
 					<Route path="/login" exact>
-						{loginLoading ? <Spinner widht="100" height="50vh"/> : <LoginPage/>}
+						{loginLoading ? <Spinner position="absolute"/> : <LoginPage/>}
 					</Route>
 					<Route path="/" exact>
-						<HomePageNotAuth/>
+						{!homePageLoading ? <HomePageNotAuth/> : <Spinner position="absolute"/>}
 					</Route>
 				</Switch>
 			)

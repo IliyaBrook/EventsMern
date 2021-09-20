@@ -1,17 +1,5 @@
 import useRequest from "../../hooks/useRequest"
 
-// export const refreshActionEvents = () => {
-// 	return async (dispatch, getState) => {
-// 		const token = getState().loginReducer.token
-// 		const data = await useRequest('/refreshEvents','GET',null, token)
-// 		if (data.message === "not authorization") {
-// 			dispatch(logoutAction())
-// 			return new Error(data.message)
-// 		}
-// 		return dispatch({type: REFRESH_EVENTS,payload:[...data]})
-// 	}
-// }
-//
 
 export const createEventSubmitAction = (clearInputFunc = null) => {
 	return async (dispatch, getState) => {
@@ -22,30 +10,32 @@ export const createEventSubmitAction = (clearInputFunc = null) => {
 			return res.message.forEach(elem => window.M.toast({html: elem.msg}))
 		}
 		if (Array.isArray(res.message)) {
-			return res.message.map(message =>  window.M.toast({html: message.msg}))
-		}else if (res.message === 'Event already exists') {
+			return res.message.map(message => window.M.toast({html: message.msg}))
+		} else if (res.message === 'Event already exists') {
 			return window.M.toast({html: res.message})
-		}else {
+		} else {
 			clearInputFunc()
-			return  window.M.toast({html: 'Event created successfully'})
+			return window.M.toast({html: 'Event created successfully'})
 		}
 		
 	}
 }
 
 export const deleteEvent = (id) => {
-	return async (dispatch, getState) => {
-		const token = getState().loginReducer.token
-		const res = await useRequest('/events/deleteEvent','POST',{eventId:id}, token)
-		window.M.toast({html:res.message})
+	return (dispatch, getState) => {
+		return new Promise(async resolve => {
+			const token = getState().loginReducer.token
+			const res = await useRequest('/events/deleteEvent', 'POST', {eventId: id}, token)
+			resolve(res)
+		})
 	}
 }
 
 export const subscribeEventAction = (event) => {
 	return async (dispatch, getState) => {
-		const { token } = getState().loginReducer
-		const response = await useRequest('/events/subscribe','POST',{id:event._id},token)
-		window.M.toast({html:response.message})
+		const {token} = getState().loginReducer
+		const response = await useRequest('/events/subscribe', 'POST', {id: event._id}, token)
+		window.M.toast({html: response.message})
 		if (response.message === 'Your subscription has been confirmed') {
 			const calendarModal = document.querySelector('.calendarModal')
 			const modal = window.M.Modal.getInstance(calendarModal)
@@ -55,10 +45,10 @@ export const subscribeEventAction = (event) => {
 }
 export const deleteSubscriptionAction = (email, eventId) => {
 	return async (dispatch, getState) => {
-		const { token } = getState().loginReducer
-		const response = await useRequest('/events/deleteSubscription','POST',{email, eventId},token)
-		response.message && window.M.toast({html:response.message})
-		response.error && window.M.toast({html:response.error})
+		const {token} = getState().loginReducer
+		const response = await useRequest('/events/deleteSubscription', 'POST', {email, eventId}, token)
+		response.message && window.M.toast({html: response.message})
+		response.error && window.M.toast({html: response.error})
 	}
 }
 

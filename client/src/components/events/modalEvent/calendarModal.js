@@ -33,6 +33,7 @@ const CalendarModalEvent = ({props}) => {
 			<i className="material-icons mt-1">event_busy</i>
 		</div>
 	)
+
 	
 	const setSubscribeBtnText = () => {
 		switch (true) {
@@ -55,12 +56,15 @@ const CalendarModalEvent = ({props}) => {
 					<div className="d-flex justify-content-center w-100">
 						{
 							role === 'admin' &&
-							<Button onClick={() => dispatch(deleteEvent(eventId))}
+							<Button onClick={() => dispatch(deleteEvent(eventId)).then(res => {
+								window.M.toast({html: res.message})
+								return handleClose()
+							})}
 							>Delete event</Button>
 						}
 						{
 							isSubscribe && <Button onClick={() => {
-								dispatch(deleteSubscriptionAction(email,eventId))
+								dispatch(deleteSubscriptionAction(email, eventId))
 							}
 							}>Unsubscribe</Button>
 						}

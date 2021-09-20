@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const StyledSpinner = styled.div`
 	display: ${({display}) => display || 'flex'};
+  	position: ${({position}) => position || 'static'};
   	align-items: ${props => props.align || 'center'};
   	justify-content: ${props => props.justify || 'center'};
   	margin: ${({margin}) => margin || '0'};

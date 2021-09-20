@@ -13,7 +13,7 @@ const eventReducerInit = {
 	createEventInputsFields:{},
 	categoriesFilter: '',
 	calendarModal: {
-		clickedEvent: {id: null, isEnd: false}
+		clickedEvent: {id: null, isEnd: false, isOpen:false}
 	}
 }
 
@@ -22,12 +22,12 @@ export const eventReducer = (state = eventReducerInit, action) => {
 		case REFRESH_EVENTS:
 			return {...state, events: [...action.payload]}
 		case SOCKET_ADD_EVENT:
-			return {...state, events: [...state.events, {...action.payload}]}
+			return {...state, events: [...state.events, {...action.eventCreated}]}
 		case SOCKET_UPDATE_EVENT:
-			const eventsOld = state.events.filter(events => events._id !== action.payload._id)
-			return {...state, events: [...eventsOld, {...action.payload}]}
+			const eventsOld = state.events.filter(events => events._id !== action.eventUpdated._id)
+			return {...state, events: [...eventsOld, {...action.eventUpdated}]}
 		case SOCKET_DELETE_EVENT:
-			return {...state, events: state.events.filter((elem => elem._id !== action.payload))}
+			return {...state, events: state.events.filter((elem => elem._id !== action.eventDeleted))}
 		case CREATE_EVENT_INPUT_FIELDS:
 			return {...state, createEventInputsFields: {...action.payload}}
 		case CLEAR_ALL_ADD_EVENT_INPUTS:

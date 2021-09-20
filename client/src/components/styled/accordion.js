@@ -1,6 +1,8 @@
 import React from 'react'
-import styled from "styled-components";
-import {Accordion, ListGroup} from "react-bootstrap";
+import styled from "styled-components"
+import {Accordion, ListGroup} from "react-bootstrap"
+// import Accordion from "react-bootstrap/Accordion"
+// import {ListGroup} from "react-bootstrap"
 
 const StyledAccordion = styled.div`
   display: ${props => props.display || 'block'};
@@ -14,11 +16,12 @@ const StyledAccordion = styled.div`
   }
 `
 export const AccordionDropDown = (props) => {
-	
 	return (
 		<Accordion style={{margin:props.wrapMargin,padding:props.wrapPadding}}>
 			<Accordion.Item eventKey="0">
-				<Accordion.Header>{props.header}</Accordion.Header>
+				<Accordion.Header>
+					{props.header}
+				</Accordion.Header>
 				<Accordion.Body>
 					<ListGroup>
 						<StyledAccordion {...props}/>

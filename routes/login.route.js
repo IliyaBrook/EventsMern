@@ -16,7 +16,7 @@ module.exports = router.post('/login', loginMiddleWareValidator, async (req, res
 		if (errors.length !== 0) {
 			let objErrors = {}
 			errors.forEach(elem => objErrors = {...objErrors, [elem.param]: elem.msg})
-			const newErrorObj = {emailError:objErrors.email,passwordError:objErrors.password}
+			const newErrorObj = {emailError: objErrors.email, passwordError: objErrors.password}
 			return res.status(400).json(newErrorObj)
 		}
 		const {email, password} = req.body
@@ -40,11 +40,12 @@ module.exports = router.post('/login', loginMiddleWareValidator, async (req, res
 			email: user.email,
 			name: user.name,
 			token,
-			role:user.role
+			role: user.role
 		})
 	} catch (e) {
 		console.log(e)
-		return res.status(500).json({message: 'Something went wrong'})
+		return res.status(500).json({
+			loginError: 'Service temporarily unavailable, please try again later'
+		})
 	}
-	
 })

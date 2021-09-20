@@ -3,7 +3,6 @@ import {
 	CLICK_RENDER_CREATE_EVENT,
 	CLICK_RENDER_EVENTS,
 	CLICK_RENDER_USERS,
-	PROFILE_PAGE_EVENTS_LOADING_TRUE,
 	PROFILE_PAGE_USERS_LOADING_FALSE,
 	PROFILE_PAGE_USERS_LOADING_TRUE,
 	RENDER_MODAL_CONTENT
@@ -17,7 +16,7 @@ export function* profilePageModalWatcher() {
 	yield takeEvery(CLICK_RENDER_CREATE_EVENT,getCreateEvent)
 }
 //'getUsers'
-//'usersEvents'
+//'getEvents'
 //'addEvents'
 function* getUsersWorker() {
 	yield put({type:PROFILE_PAGE_USERS_LOADING_TRUE})
@@ -28,11 +27,8 @@ function* getUsersWorker() {
 }
 
 function* getEventsWorker() {
-	yield put({type:PROFILE_PAGE_EVENTS_LOADING_TRUE})
-	yield put({type:RENDER_MODAL_CONTENT, payload:'usersEvents'})
-	// const getUsers = yield put(getUsersAction())
-	// yield getUsers
-	// yield put({type:PROFILE_PAGE_USERS_LOADING_FALSE})
+	// yield put({type:PROFILE_PAGE_EVENTS_LOADING_TRUE})
+	yield put({type:RENDER_MODAL_CONTENT, payload:'getEvents'})
 }
 
 function* getCreateEvent() {

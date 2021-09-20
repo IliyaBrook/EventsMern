@@ -1,8 +1,11 @@
-import {call, fork, put, select, takeEvery} from 'redux-saga/effects'
-import useRequest from "../../../hooks/useRequest"
-import {REGISTRATION_FORM_VALID, REGISTRATION_LOADING_FALSE,} from '../../registration/registrationTypes'
-import {socketSaga} from "../socket/socketSagaWatcher"
+import {call, put, select, takeEvery} from 'redux-saga/effects'
+import {
+	REGISTRATION_FORM_VALID,
+	REGISTRATION_LOADING_FALSE,
+	REGISTRATION_LOADING_TRUE,
+} from '../../registration/registrationTypes'
 import {push} from "react-router-redux"
+import {useRequestSaga} from "../use/useRequestSaga"
 
 
 export function* registrationSagaWatcher() {
@@ -12,38 +15,18 @@ export function* registrationSagaWatcher() {
 
 function* SagaWorkerFetchRegistrationData() {
 	try {
+		yield put({type: REGISTRATION_LOADING_TRUE})
 		const {email, name, password} = yield select(state => state.registrationReducer.inputs)
-		const request = yield call(fetch, '/registration', {
-			method: 'POST', body: JSON.stringify({email, name, password}),
-			headers: {'Content-Type': 'application/json'}
-		})
-		const data = yield call([request, request.json])
-		if (!request.ok) {
+		const {...res} = yield call(useRequestSaga,{url:'/registration', method:'POST', body:{email, name, password}})
+		if (!res.request.ok) {
 			yield put({type: REGISTRATION_LOADING_FALSE})
-			const error = Object.values(data)[0]
-			return yield window.M.toast({html: error})
+			return yield window.M.toast({html: res.data.registrationMessage})
 		}
-		yield window.M.toast({html: 'Thank you!, '})
-		yield fork(socketSaga, data.token)
-		yield put(push('/'))
-		
-		
-		// if (emailErrorVal === 'valid' && passwordErrorVal === 'valid' && nameErrorVal === 'valid') {
-		// 	const payload = yield call(fetchRegistration, {email, name, password})
-		// 	yield window.M.toast({html: Object.values(payload)[0]})
-		// 	if (payload?.registrationMessage === "user has been created") {
-		// 		yield put(push('/login'))
-		// 	}
-		// }
-		
-		
+		yield window.M.toast({html: 'Thank you!, now enter email and password!'})
+		yield put(push('/login'))
 		yield put({type: REGISTRATION_LOADING_FALSE})
-	} catch (errors) {
-		yield put({type: REGISTRATION_LOADING_FALSE})
-		yield yield window.M.toast({html: JSON.stringify(e)})
+	} catch (e) {
+		console.log(e)
+		return yield window.M.toast({html: 'Server is temporarily unavailable'})
 	}
-}
-
-async function fetchRegistration({...body}) {
-	return await useRequest('/registration', 'POST', {...body})
 }
