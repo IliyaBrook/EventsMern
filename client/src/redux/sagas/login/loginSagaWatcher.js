@@ -3,6 +3,7 @@ import {LOGIN_FORM_VALID, LOGIN_LOADING_FALSE, LOGIN_LOADING_TRUE, SET_LOGIN_DAT
 import {push} from "react-router-redux"
 import {socketRootSaga} from "../socket/socketRootSaga"
 import {useRequestSaga} from "../use/useRequestSaga"
+import {refreshSaga} from "../refreshData/refreshSaga"
 
 
 export function* loginSagaWatcher() {
@@ -23,6 +24,7 @@ function* loginSagaWorker() {
 			return yield window.M.toast({html: res.request.statusText})
 		}
 		localStorage.setItem('userData', JSON.stringify({...res.data}))
+		yield fork(refreshSaga)
 		yield put({type: SET_LOGIN_DATA, payload: {...res.data, isAuth: true}})
 		yield window.M.toast({html: `Welcome! ${Object.values(res.data)[1]}`})
 		yield fork(socketRootSaga, res.data.token)
