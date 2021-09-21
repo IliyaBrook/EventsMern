@@ -14,7 +14,6 @@ require('./socket/socket')(io)
 
 
 app.use(bodyParser.json({extended: true}))
-mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
 app.use('/', require('./routes/registration.route'))
