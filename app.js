@@ -44,14 +44,7 @@ const PORT = process.env.PORT || config.get('port')
 
 async function start() {
 	try {
-		await mongoose.connect(
-			process.env.MONGODB_URI || config.get('mongoUri'),
-			{
-				useNewUrlParser: true,
-				useUnifiedTopology: true,
-				useCreateIndex: true
-			}
-		)
+		await mongoose.connect(process.env.MONGODB_URI || config.get('mongoUri'))
 		
 		server.listen(PORT, () => {
 			console.log('App started on port: ', PORT)
