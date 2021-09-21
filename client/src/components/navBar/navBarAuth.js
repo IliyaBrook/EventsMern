@@ -35,7 +35,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 					</ul>
 					<div className="logoStyleNotAuth">
 						<Link className="brand-logo center logoStyleNotAuth logoHeader" to="/">
-							<div className="logoHeader hide-on-small-only">
+							<div className="logoHeader">
 								Social City
 							</div>
 						</Link>

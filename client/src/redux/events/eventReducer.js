@@ -2,7 +2,7 @@ import {
 	CATEGORIES_FILTER,
 	CLEAR_ALL_ADD_EVENT_INPUTS,
 	CLICKED_EVENT_CALENDAR,
-	CREATE_EVENT_INPUT_FIELDS,
+	EVENT_INPUT_FIELDS,
 	REFRESH_EVENTS
 } from "./eventsTypes";
 import {SOCKET_ADD_EVENT, SOCKET_DELETE_EVENT, SOCKET_UPDATE_EVENT} from '../social/socialTypes'
@@ -10,10 +10,20 @@ import {SOCKET_ADD_EVENT, SOCKET_DELETE_EVENT, SOCKET_UPDATE_EVENT} from '../soc
 
 const eventReducerInit = {
 	events: [],
-	createEventInputsFields:{},
+	createEventInputsFields: {
+		eventName: '',
+		startDate: '',
+		endDate: '',
+		startTime: '',
+		endTime: '',
+		color: '',
+		categories: '',
+		freeSpots: '',
+		eventDescription: ''
+	},
 	categoriesFilter: '',
 	calendarModal: {
-		clickedEvent: {id: null, isEnd: false, isOpen:false}
+		clickedEvent: {id: null, isEnd: false, isOpen: false}
 	}
 }
 
@@ -28,10 +38,10 @@ export const eventReducer = (state = eventReducerInit, action) => {
 			return {...state, events: [...eventsOld, {...action.eventUpdated}]}
 		case SOCKET_DELETE_EVENT:
 			return {...state, events: state.events.filter((elem => elem._id !== action.eventDeleted))}
-		case CREATE_EVENT_INPUT_FIELDS:
-			return {...state, createEventInputsFields: {...action.payload}}
+		case EVENT_INPUT_FIELDS:
+			return {...state, createEventInputsFields: {...state.createEventInputsFields,...action.payload}}
 		case CLEAR_ALL_ADD_EVENT_INPUTS:
-			return {...state, createEventInputsFields :{}}
+			return {...state, createEventInputsFields: {...eventReducerInit.createEventInputsFields}}
 		case CATEGORIES_FILTER:
 			return {...state, categoriesFilter: action.payload}
 		case CLICKED_EVENT_CALENDAR:

@@ -1,53 +1,36 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {Button, Form} from "react-bootstrap"
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {createEventSubmitAction} from "../../../redux/events/eventsAction"
 import {useFormatDate} from "../../../hooks/useFormatDate"
-import {CLEAR_ALL_ADD_EVENT_INPUTS, CREATE_EVENT_INPUT_FIELDS} from "../../../redux/events/eventsTypes";
+import {EVENT_INPUT_FIELDS} from "../../../redux/events/eventsTypes";
 
 
-const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateInputs}) => {
+const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 	const startDateRef = useRef()
 	const endDateRef = useRef()
 	const startTimeRef = useRef()
 	const endTimeRef = useRef()
 	const dropDownRef = useRef()
 	
-	const [eventInputs, setEventInputs] = useState({
-		eventName: '',
-		startDate: '',
-		endDate:'',
-		startTime:'',
-		endTime:'',
-		color: '',
-		categories: '',
-		freeSpots: '',
-		eventDescription: ''
-	})
-	
-	useEffect(() => {
-		updateReduxStateInputs(eventInputs)
-	}, [eventInputs])
-	
-	
 	useEffect(() => {
 		pickerEventHandler(window.M.Datepicker, startDateRef, getStartDateHandler)
 		pickerEventHandler(window.M.Datepicker, endDateRef, getEndDateHandler)
-		pickerEventHandler(window.M.Timepicker, startTimeRef, () => getTime(startTimeRef, setEventInputs, "startTime"))
-		pickerEventHandler(window.M.Timepicker, endTimeRef, () => getTime(endTimeRef, setEventInputs, "endTime"))
+		pickerEventHandler(window.M.Timepicker, startTimeRef, () => getTime(startTimeRef, dispatchInputs, "startTime"))
+		pickerEventHandler(window.M.Timepicker, endTimeRef, () => getTime(endTimeRef, dispatchInputs, "endTime"))
 		window.M.Modal.init(dropDownRef.current)
 	}, [])
 	
 	
 	const getStartDateHandler = (event) => {
 		const startDate = useFormatDate(event)
-		return setEventInputs(prevState => ({...prevState, startDate }))
+		return dispatchInputs({startDate})
 	}
 	
 	const getEndDateHandler = (event) => {
 		const endDate = useFormatDate(event)
-		return setEventInputs(prevState => ({...prevState, endDate }))
+		return dispatchInputs({endDate})
 	}
 	const getTime = (ref, actionFunc, key) => {
 		const amOrPmEnd = ref.current.M_Timepicker.amOrPm
@@ -56,7 +39,7 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 		hour = hour.toString().length < 2 ? "0" + hour.toString() : hour.toString()
 		minute = minute.toString().length < 2 ? "0" + minute.toString() : minute.toString()
 		const time = `${hour}:${minute} ${amOrPmEnd}`
-		return actionFunc((prevState) => ({...prevState,[key]: time}))
+		return actionFunc({[key]: time})
 	}
 	const pickerEventHandler = (materializePicker, ref, onSelectCallback) => {
 		return materializePicker.init(ref.current, {
@@ -66,11 +49,9 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 	}
 	
 	const inputHandler = (event) => {
-		return setEventInputs(prevState => ({...prevState, [event.target.id]: event.target.value}))
+		return dispatchInputs({[event.target.name]: event.target.value})
 	}
-	
 	const clearAllInputs = () => {
-		clearInputsState()
 		const input = document.querySelectorAll(".inputAddEvent")
 		input.forEach(elem => elem.value = '')
 		document.querySelector('.selectColor').style.background = 'white'
@@ -83,7 +64,7 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 	
 	
 	const onSelect = (event) => {
-		setEventInputs(prevState => ({...prevState, [event.target.id]: event.target.value}))
+		dispatchInputs({[event.target.name]: event.target.value})
 		const colorInput = document.querySelector('.selectColor')
 		colorInput.style.background = event.target.value
 		colorInput.value === 'null' ? colorInput.style.background = 'white' : null
@@ -92,16 +73,16 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 	return (
 		<div>
 			<form onSubmit={submitEvent}>
-				<div className="d-flex w-100 ">
-					<div className="w-50">
+				<div className="d-flex w-100 addEventWrapper">
+					<div className="w-50 addEventInputsWrapper">
 						
 						<Form.Group className="eventForm">
-							<div className="input-field">
+							<div className="input-field eventName">
 								<i className="material-icons prefix eventNameInputStyle">create</i>
 								<input id="eventName" type="text" className="datepicker inputAddEvent"
 								       onChange={inputHandler}
-								       value={eventInputs.eventName}
-								       autoComplete="off" name="eventName" />
+								       value={inputsState.eventName}
+								       autoComplete="off" name="eventName"/>
 								<label htmlFor="eventName" className="w-50">Event name</label>
 							</div>
 							
@@ -111,7 +92,7 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 									<input id="startDate" type="text"
 									       className="validate datepicker inputAddEvent" ref={startDateRef}
 									       name="startDate"
-									       defaultValue={eventInputs.startDate}
+									       defaultValue={inputsState.startDate}
 									/>
 									<label htmlFor="startDate" className="curPointer">Start date</label>
 								</div>
@@ -123,7 +104,7 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 									<i className="material-icons prefix">date_range</i>
 									<input id="endDate"
 									       type="text"
-									       defaultValue={eventInputs.endDate}
+									       defaultValue={inputsState.endDate}
 									       className="validate datepicker inputAddEvent" ref={endDateRef}
 									       name="endDate"/>
 									<label htmlFor="endDate" className="curPointer">End date</label>
@@ -137,7 +118,8 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 									       className="validate datepicker timepicker curPointer inputAddEvent"
 									       ref={startTimeRef}
 									       name="startTime"
-									       defaultValue={eventInputs.startTime}
+									       defaultValue={inputsState.startTime}
+									       onChange={e => console.log(e)}
 									/>
 									<label htmlFor="startTime" className="curPointer">Start time</label>
 								</div>
@@ -150,7 +132,7 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 									       className="validate timepicker inputAddEvent"
 									       ref={endTimeRef}
 									       name="endTime"
-									       defaultValue={eventInputs.endTime}
+									       defaultValue={inputsState.endTime}
 									/>
 									<label htmlFor="endTime" className="curPointer">End time</label>
 								</div>
@@ -163,19 +145,21 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 									              placeholder='Enter a number of spots'
 									              onChange={inputHandler}
 									              className="inputAddEvent"
-									              value={eventInputs.freeSpots}
+									              name="freeSpots"
+									              value={inputsState.freeSpots}
 									/>
 								</Form.Group>
 							</div>
 						</Form.Group>
 					</div>
 					
-					<div className="d-row w-25 justify-content-center">
+					<div className="d-row w-25 justify-content-center addEventSelectorsWrapper">
 						<div className="mb-5">
 							<h6 className="blue-text">Select color</h6>
 							<Form.Control as="select" onChange={onSelect}
 							              className="selectColor inputAddEvent"
-							              value={eventInputs.color}
+							              value={inputsState.color}
+							              name="color"
 							              id="color">
 								<option value="null"/>
 								<option value="black">Black</option>
@@ -192,7 +176,8 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 								onChange={onSelect}
 								id="categories"
 								className="inputAddEvent"
-								value={eventInputs.categories}
+								name="categories"
+								value={inputsState.categories}
 							>
 								<option value="null"/>
 								<option value="Music">Music</option>
@@ -211,8 +196,9 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 							<Form.Control onChange={inputHandler}
 							              as="textarea"
 							              rows={4}
+							              name="eventDescription"
 							              className="h-100 inputAddEvent"
-							              value={eventInputs.eventDescription}
+							              value={inputsState.eventDescription}
 							/>
 						</Form.Group>
 					</div>
@@ -228,9 +214,9 @@ const AddEvent = ({createEventSubmitAction, clearInputsState, updateReduxStateIn
 
 const mapDispatchToProps = dispatch => {
 	return {
-		clearInputsState: () => dispatch({type: CLEAR_ALL_ADD_EVENT_INPUTS}),
-		updateReduxStateInputs:(inputs) => dispatch({type:CREATE_EVENT_INPUT_FIELDS, payload:inputs}),
+		dispatchInputs: (inputs) => dispatch({type: EVENT_INPUT_FIELDS, payload: inputs}),
 		...bindActionCreators({createEventSubmitAction}, dispatch),
 	}
 }
-export default connect(null,mapDispatchToProps)(AddEvent)
+const mapStateToProps = state => ({inputsState: state.eventReducer.createEventInputsFields})
+export default connect(mapStateToProps, mapDispatchToProps)(AddEvent)

@@ -18,7 +18,10 @@ const EventCalendar = () => {
 	const dispatch = useDispatch()
 	const calendarModalRef = useRef()
 	
+	
+	
 	const eventProvider = () => {
+		const {events, categoriesFilter} = useSelector(state => state.eventReducer)
 		const eventTemplate = (event) => {
 			const start = moment(`${event?.startDate} ${event?.startTime}`, 'YYYY-MM-DD, hh:mm A').toDate()
 			const end = moment(`${event?.endDate} ${event?.endTime}`, 'YYYY-MM-DD, hh:mm A').toDate()
@@ -31,10 +34,12 @@ const EventCalendar = () => {
 				id: event._id,
 			}
 		}
+		console.log(categoriesFilter)
 		if (categoriesFilter) {
 			return events.filter(event => event.categories === categoriesFilter).map(event => eventTemplate(event))
 		}
 		return events.map((event) => eventTemplate(event))
+		
 	}
 	
 	
@@ -69,7 +74,7 @@ const EventCalendar = () => {
 	return (
 		<div className="calendarEventsWrapper">
 			<div className="d-flex w-100 justify-content-end ">
-				<Form.Group className="p-3 filterWrapper ">
+				<Form.Group className="p-3 filterWrapper">
 					<Form.Label>Event filter</Form.Label>
 					<Form.Control as="select" className="w-100 mr-3 filterControls"
 					              onChange={e => dispatch({type: CATEGORIES_FILTER, payload: e.target.value})}>

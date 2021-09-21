@@ -14,6 +14,7 @@ export function* refreshSaga() {
 }
 
 function* requestDataWorker() {
+	
 	yield put({type:HOME_PAGE_LOADING_TRUE})
 	const localStorageData = yield JSON.parse(localStorage.getItem('userData'))
 	if (localStorageData) {

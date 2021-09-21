@@ -17,3 +17,35 @@
 #color{
   color:#2bbbad;
 }
+
+
+
+@media (max-width: 600px) {
+  .eventName{
+    width: 85%!important;
+  }
+  .modal-content{
+    padding: 4%!important;
+  }
+  .addEventWrapper{
+    width:100%!important;
+    .addEventInputsWrapper{
+      width: 65%!important;
+    }
+    .addEventSelectorsWrapper{
+      width: 35% !important;
+    }
+  }
+  .allUser{
+    width: 100% !important;
+    div{
+      width: 100% !important;
+    }
+    .topBtnsWrapper{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 3%;
+    }
+  }
+}

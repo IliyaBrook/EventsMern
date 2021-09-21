@@ -30,56 +30,91 @@ const AllUsers = () => {
 				return setRole(event)
 			}
 			
+			// const showRole = () => {
+			// 	switch (user.role) {
+			// 		case 'admin':
+			// 			return (
+			// 				<>
+			// 					<div className="showRule">
+			// 						<span className="ml-2 blue-text">Role:</span>
+			// 						<span>
+			// 							{user.role}
+			// 						</span>
+			// 					</div>
+			// 					<div className="d-flex justify-content-center mb-2">
+			// 						<Button
+			// 							id={JSON.stringify({email: user.email, index})}
+			// 							size="small" className="red ml-4" onClick={removeAdminEvent}>Delete role
+			// 						</Button>
+			// 					</div>
+			// 				</>
+			// 			)
+			// 		default:
+			// 			return (
+			// 				<div className="showRule">
+			// 					<div>
+			// 						<span className="blue-text">Role:</span>
+			// 						<span>
+			// 							{user.role}
+			// 						</span>
+			// 					</div>
+			// 					<div className="d-flex justify-content-center mb-2">
+			// 						<Button id={JSON.stringify({email: user.email, index})} size="small"
+			// 						        className="blue ml-4 setRoleBtnStyle" onClick={setAdminEvent}>Set
+			// 							admin</Button>
+			// 					</div>
+			// 				</div>
+			// 			)
+			// 	}
+			// }
 			const showRole = () => {
-				switch (user.role) {
-					case 'admin':
-						return (
-							<>
-								<div className="showRule">
-									<span className="ml-2 blue-text">Role:</span>
-									<span>
-										{user.role}
-									</span>
-								</div>
-								<div className="d-flex justify-content-center mb-2">
-									<Button
-										id={JSON.stringify({email: user.email, index})}
-										size="small" className="red ml-4" onClick={removeAdminEvent}>Delete role
-									</Button>
-								</div>
-							</>
-						)
-					default:
-						return (
-							<div className="showRule">
-								<div>
-									<span className="blue-text">Role:</span>
-									<span>
-										{user.role}
-									</span>
-								</div>
-								<div className="d-flex justify-content-center mb-2">
-									<Button id={JSON.stringify({email: user.email, index})} size="small"
-									        className="blue ml-4 setRoleBtnStyle" onClick={setAdminEvent}>Set
-										admin</Button>
-								</div>
-							</div>
-						)
-				}
+				return (
+					<>
+						<div className="showRule">
+							<span className="ml-2 blue-text">Role:</span>
+							<span>
+								{user.role}
+							</span>
+						</div>
+						{/*<div className="d-flex justify-content-center mb-2">*/}
+						{/*	<Button*/}
+						{/*		id={JSON.stringify({email: user.email, index})}*/}
+						{/*		size="small" className="red ml-4" onClick={removeAdminEvent}>Delete role*/}
+						{/*	</Button>*/}
+						{/*</div>*/}
+						
+						<Form.Check
+							type="switch"
+							id="custom-switch"
+							label="Check this switch"
+						/>
+						<Form.Check
+							disabled
+							type="switch"
+							label="disabled switch"
+							id="disabled-custom-switch"
+						/>
+					
+					
+					</>
+				)
 			}
 			
 			return (
 				<div className='w-100 allUser' key={index + 1}>
-					<div className="black-text mb-5">
+					<div className="black-text mb-5 mt-5">
 						<div className="shadow p-2 w-75 rounded text-nowrap h-100">
 							<div className="row">
-								<div className="col s6 d-flex justify-content-center">
-									<Button id={user.email} size="small" className="red ml-4" onClick={deleteUserEvent}>Delete
-										user</Button>
-								</div>
-								
-								<div className="col s6 d-flex justify-content-center">
-									<Button size="small" className="ml-4">User events</Button>
+								<div className="topBtnsWrapper">
+									<div className="col s6 d-flex justify-content-center">
+										<Button id={user.email} size="small" className="red ml-4"
+										        onClick={deleteUserEvent}>Delete
+											user</Button>
+									</div>
+									
+									<div className="col s6 d-flex justify-content-center">
+										<Button size="small" className="ml-4">User events</Button>
+									</div>
 								</div>
 							</div>
 							<div>
@@ -91,9 +126,7 @@ const AllUsers = () => {
 								<span>{user.name}</span>
 							</div>
 							<div className='divider mt-3'/>
-							<div className='mt-3'>
-								{showRole()}
-							</div>
+							{showRole()}
 						</div>
 					</div>
 				</div>
@@ -107,12 +140,12 @@ const AllUsers = () => {
 					<Form.Label>Search</Form.Label>
 					<Form.Control
 						type="text" placeholder="Type text filter events"
-						onChange={e => {setFilterInput(e.target.value)}}
+						onChange={e => {
+							setFilterInput(e.target.value)
+						}}
 					/>
 				</Form.Group>
-				<div className="mt-5">
-					{showUsers()}
-				</div>
+				{showUsers()}
 			</Form>
 		</>
 	)

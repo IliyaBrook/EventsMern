@@ -14,7 +14,7 @@ const NavBarNotAuth = () => {
 			<nav>
 				<div className="nav-wrapper #607d8b blue-grey darken-3">
 					<Link className="brand-logo center logoStyleNotAuth logoHeader" to="/">
-						<div className="logoHeader hide-on-small-only">
+						<div className="logoHeader">
 							Social City
 						</div>
 					</Link>

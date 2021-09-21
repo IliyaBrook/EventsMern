@@ -1,6 +1,8 @@
 import {
 	ADD_SOCKET_ID,
-	CLEAR_LOGIN_ERRORS,
+	CLEAR_ERRORS_EMAIL,
+	CLEAR_ERRORS_PASSWORD,
+	CLEAR_LOGIN_INPUTS,
 	CLEAR_LOGIN_STATE,
 	LOG_OUT,
 	LOGIN_LOADING_FALSE,
@@ -12,32 +14,33 @@ import {
 } from "./loginTypes"
 
 export const initialStateLogin = {
-	isSocketConnected:false,
-	socketId:null,
+	isSocketConnected: false,
+	socketId: null,
 	email: null,
 	name: null,
 	token: null,
 	isAuth: false,
 	role: null,
-	loginErrors:{
+	loginErrors: {
 		emailError: null,
 		emailClassName: null,
 		passwordError: null,
 		passwordClassName: null,
 	}
-	,inputs:{
-		email:'',
-		password:''
+	, inputs: {
+		email: '',
+		password: ''
 	},
-	loading:false
+	loading: false
 }
 export const loginReducer = (state = initialStateLogin, action) => {
 	switch (action.type) {
 		case ADD_SOCKET_ID:
 			return {...state, socketId: action.payload}
 		case SET_LOGIN_DATA:
-			return {...state,
-				email: action.payload.email, name:action.payload.name,
+			return {
+				...state,
+				email: action.payload.email, name: action.payload.name,
 				role: action.payload.role, token: action.payload.token,
 				isAuth: action.payload.isAuth
 			}
@@ -45,12 +48,33 @@ export const loginReducer = (state = initialStateLogin, action) => {
 			return {...initialStateLogin}
 		case SET_LOGIN_ERRORS:
 			return {...state, loginErrors: {...state.loginErrors, ...action.payload}}
-		case CLEAR_LOGIN_ERRORS	:
-			return {...state, loginErrors: {...initialStateLogin.loginErrors}}
 		case UPDATE_LOGIN_INPUTS:
 			return {...state, inputs: {...action.payload}}
 		case CLEAR_LOGIN_STATE:
 			return {...initialStateLogin}
+		case CLEAR_ERRORS_EMAIL:
+			return {
+				...state, loginErrors: {
+					...state.loginErrors,
+					emailError: null,
+					emailClassName: null,
+				}
+			}
+		case CLEAR_ERRORS_PASSWORD:
+			return {
+				...state, loginErrors: {
+					...state.loginErrors,
+					passwordError: null,
+					passwordClassName: null,
+				}
+			}
+		case CLEAR_LOGIN_INPUTS:
+			return {
+				...state, inputs: {
+					email: '',
+					password: ''
+				}
+			}
 		case SET_SOCKET_CONNECTED_AND_ID:
 			return {...state, ...action.payload}
 		

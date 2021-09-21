@@ -1,5 +1,6 @@
 import {call, put, select, takeEvery} from 'redux-saga/effects'
 import {
+	CLEAR_REGISTRATION_ERRORS,
 	REGISTRATION_FORM_VALID,
 	REGISTRATION_LOADING_FALSE,
 	REGISTRATION_LOADING_TRUE,
@@ -23,6 +24,7 @@ function* SagaWorkerFetchRegistrationData() {
 			return yield window.M.toast({html: res.data.registrationMessage})
 		}
 		yield window.M.toast({html: 'Thank you!, now enter email and password!'})
+		yield put({type:CLEAR_REGISTRATION_ERRORS})
 		yield put(push('/login'))
 		yield put({type: REGISTRATION_LOADING_FALSE})
 	} catch (e) {

@@ -23,7 +23,6 @@ const HomePageNotAuth = () => {
 	}
 	return (
 		<div>
-			<Carousel/>
 			{carouselReady ? <Carousel/> : <div/>}
 			<div className="notAuthBorderWrapper justify-content-center d-flex ">
 				<div className="section"/>

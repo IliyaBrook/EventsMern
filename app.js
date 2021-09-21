@@ -3,12 +3,11 @@ const config = require('config')
 const mongoose = require('mongoose')
 const path = require('path')
 const bodyParser = require('body-parser')
-const {Server} = require("socket.io")
 const app = express()
 const server = require('http').createServer(app)
-const ws = require('ws')
 //webSocketServer
-io = new Server(server, {wsEngine: ws.Server})
+const webSocketServer = require('http').createServer(app)
+io = require('socket.io')(webSocketServer, {transports:['websocket']})
 require('./socket/socket')(io)
 //
 
@@ -47,6 +46,10 @@ async function start() {
 		server.listen(PORT, () => {
 			console.log('App started on port: ', PORT)
 		})
+		webSocketServer.listen(8080, () => {
+			console.log('Websocket server stared on port: ', 8080)
+		})
+		
 	} catch (e) {
 		console.log('Server mongo error', e.message)
 		process.exit(1)

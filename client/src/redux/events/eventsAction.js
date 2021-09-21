@@ -1,7 +1,8 @@
 import useRequest from "../../hooks/useRequest"
+import {CLEAR_ALL_ADD_EVENT_INPUTS} from "./eventsTypes"
 
 
-export const createEventSubmitAction = (clearInputFunc = null) => {
+export const createEventSubmitAction = (clearInputFunc) => {
 	return async (dispatch, getState) => {
 		const token = getState().loginReducer.token
 		const body = getState().eventReducer.createEventInputsFields
@@ -15,6 +16,7 @@ export const createEventSubmitAction = (clearInputFunc = null) => {
 			return window.M.toast({html: res.message})
 		} else {
 			clearInputFunc()
+			dispatch({type:CLEAR_ALL_ADD_EVENT_INPUTS})
 			return window.M.toast({html: 'Event created successfully'})
 		}
 		
