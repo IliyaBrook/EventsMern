@@ -7,7 +7,7 @@ import {eventDeletedSaga, eventUpdatedSaga, newEventSaga} from "./socketSagas"
 export function* socketRootSaga(token) {
 	const isAuth = yield select(state => state.loginReducer.isAuth)
 	if (isAuth) {
-		const socket = io('ws://localhost:8080',{auth: {token}, reconnectionDelay: 8000, transports:["websocket"]})
+		const socket = io({auth: {token}, reconnectionDelay: 8000})
 		yield all(
 			[
 				fork(newEventSaga, socket),
