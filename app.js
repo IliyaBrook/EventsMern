@@ -35,7 +35,6 @@ if (process.env.USERNAME !== 'brook') {
 	})
 }
 
-
 const PORT = process.env.PORT || config.get('port')
 
 async function start() {

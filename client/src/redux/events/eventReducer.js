@@ -32,6 +32,10 @@ export const eventReducer = (state = eventReducerInit, action) => {
 		case REFRESH_EVENTS:
 			return {...state, events: [...action.payload]}
 		case SOCKET_ADD_EVENT:
+			const searchDuplicate = state.events.filter(event => event._id === action.eventCreated._id)
+			if (searchDuplicate.length > 0) {
+				return {...state}
+			}
 			return {...state, events: [...state.events, {...action.eventCreated}]}
 		case SOCKET_UPDATE_EVENT:
 			const eventsOld = state.events.filter(events => events._id !== action.eventUpdated._id)
