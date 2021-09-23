@@ -13,60 +13,12 @@ const AllUsers = () => {
 	
 	
 	const showUsers = () => {
-		const setRole = (event, role = 'user') => {
-			const email = JSON.parse(event.target.id).email
-			const index = JSON.parse(event.target.id).index
-			return dispatch(setRoleAction(email, role, index))
-		}
+		
 		
 		return users.filter(user => user.name.toLowerCase().includes(filterInput)).map((user, index) => {
 			const deleteUserEvent = (event) => {
 				return dispatch(deleteUserAction(event.target.id))
 			}
-			const setAdminEvent = (event) => {
-				return setRole(event, 'admin')
-			}
-			const removeAdminEvent = (event) => {
-				return setRole(event)
-			}
-			
-			// const showRole = () => {
-			// 	switch (user.role) {
-			// 		case 'admin':
-			// 			return (
-			// 				<>
-			// 					<div className="showRule">
-			// 						<span className="ml-2 blue-text">Role:</span>
-			// 						<span>
-			// 							{user.role}
-			// 						</span>
-			// 					</div>
-			// 					<div className="d-flex justify-content-center mb-2">
-			// 						<Button
-			// 							id={JSON.stringify({email: user.email, index})}
-			// 							size="small" className="red ml-4" onClick={removeAdminEvent}>Delete role
-			// 						</Button>
-			// 					</div>
-			// 				</>
-			// 			)
-			// 		default:
-			// 			return (
-			// 				<div className="showRule">
-			// 					<div>
-			// 						<span className="blue-text">Role:</span>
-			// 						<span>
-			// 							{user.role}
-			// 						</span>
-			// 					</div>
-			// 					<div className="d-flex justify-content-center mb-2">
-			// 						<Button id={JSON.stringify({email: user.email, index})} size="small"
-			// 						        className="blue ml-4 setRoleBtnStyle" onClick={setAdminEvent}>Set
-			// 							admin</Button>
-			// 					</div>
-			// 				</div>
-			// 			)
-			// 	}
-			// }
 			const showRole = () => {
 				return (
 					<>
@@ -75,27 +27,22 @@ const AllUsers = () => {
 							<span>
 								{user.role}
 							</span>
+							
+							<span className="switch setRoleSwitch">
+								<label>
+									User
+									<input type="checkbox" className="setRoleSwitchInput"
+									       name={user.email}
+									       id={index}
+									       checked={users[index].role === 'admin' && true}
+									       onChange={() => {
+										       dispatch(setRoleAction(users[index], index))
+									       }}/>
+									<span className="lever"/>
+									Admin
+								</label>
+							</span>
 						</div>
-						{/*<div className="d-flex justify-content-center mb-2">*/}
-						{/*	<Button*/}
-						{/*		id={JSON.stringify({email: user.email, index})}*/}
-						{/*		size="small" className="red ml-4" onClick={removeAdminEvent}>Delete role*/}
-						{/*	</Button>*/}
-						{/*</div>*/}
-						
-						<Form.Check
-							type="switch"
-							id="custom-switch"
-							label="Check this switch"
-						/>
-						<Form.Check
-							disabled
-							type="switch"
-							label="disabled switch"
-							id="disabled-custom-switch"
-						/>
-					
-					
 					</>
 				)
 			}

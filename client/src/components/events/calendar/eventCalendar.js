@@ -14,7 +14,7 @@ import CalendarModalEvent from "../modalEvent/calendarModal";
 const EventCalendar = () => {
 	
 	const calendarRef = useRef()
-	const {events, categoriesFilter} = useSelector(state => state.eventReducer)
+	const {events} = useSelector(state => state.eventReducer)
 	const dispatch = useDispatch()
 	const calendarModalRef = useRef()
 	

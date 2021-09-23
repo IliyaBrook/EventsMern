@@ -26,10 +26,25 @@ export const deleteUserAction = (email) => {
 	}
 }
 
-export const setRoleAction = ( email, role, index ) => {
+export const setRoleAction = (user, index) => {
 	return async (dispatch, getState) => {
 		const token = getState().loginReducer.token
-		dispatch({type: SET_ROLE, email, role, index})
-		return useRequest('/profilePage/setAdmin', 'POST', {email, role} , token)
+		switch (user.role) {
+			case 'admin':
+				return dispatch({
+					type: SET_ROLE, payload: {
+						newUser: {...user, role: 'user'},
+						index: index
+					}
+				})
+			case 'user':
+				return dispatch({
+					type: SET_ROLE, payload: {
+						newUser: {...user, role: 'admin'},
+						index: index
+					}
+				})
+		}
+		return useRequest('/profilePage/setAdmin', 'POST', {email: user.email, role: user.role}, token)
 	}
 }

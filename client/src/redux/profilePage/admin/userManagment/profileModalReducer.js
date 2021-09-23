@@ -29,11 +29,9 @@ export const profileModalReducer = (state = userManagmentReducerInitState, actio
 		case DELETE_USER:
 			return {...state, users: state.users.filter((elem => elem.email !== action.email))}
 		case SET_ROLE:
-			const foundedUser = state.users.filter(elem => elem.email === action.email)[0]
-			const withAdminUser = {...foundedUser, role: action.role}
-			const newUsersData = [...state.users]
-			newUsersData.splice(action.index, 1, withAdminUser)
-			return {...state, users: newUsersData}
+			const newData = [...state.users]
+			newData.splice(action.payload.index, 1, action.payload.newUser)
+			return {...state, users: [...newData]}
 		case RENDER_MODAL_CONTENT:
 			return {...state, renderComponentState: {component: action.payload}}
 		case PROFILE_PAGE_USERS_LOADING_TRUE:

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import Switch from "react-bootstrap/Switch"
-import {Redirect, Route} from "react-router-dom"
+import {Redirect, Route, useLocation} from "react-router-dom"
+
 import NavBarNotAuth from "./components/navBar/navBarNotAuth"
 import RegisterPage from "./components/registerPage/registerPage"
 import NavBarAuth from "./components/navBar/navBarAuth"
@@ -11,17 +12,22 @@ import HomePageAuth from "./components/homePage/homePageAuth"
 import EventCalendar from "./components/events/calendar/eventCalendar"
 import {useDispatch, useSelector} from 'react-redux'
 import Spinner from "./components/styled/spinner"
+import {push} from "react-router-redux"
 
 export const App = () => {
+	const location = useLocation()
 	const dispatch = useDispatch()
-	useEffect(() => dispatch({type:'ENTER_PAGE'}),[])
-	
+	useEffect(() => {
+		dispatch({type: 'ENTER_PAGE'})
+		if (location.pathname !== '/') {
+			dispatch(push(location.pathname))
+		}
+	}, [])
 	const {
-		loginReducer:{loading: loginLoading,isAuth},
-		registrationReducer:{loading:registrationLoading},
-		homePageReducer:{ loading: homePageLoading }
+		loginReducer: {loading: loginLoading, isAuth},
+		registrationReducer: {loading: registrationLoading},
+		homePageReducer: {loading: homePageLoading}
 	} = useSelector(state => state)
-	
 	
 	switch (isAuth) {
 		case true:
