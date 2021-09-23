@@ -5,6 +5,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const app = express()
 const server = require('http').createServer(app)
+
 //webSocketServer
 const webSocketServer = require('http').createServer(app)
 io = require('socket.io')(webSocketServer, {transports:['websocket']})
@@ -37,17 +38,18 @@ if (process.env.USERNAME !== 'brook') {
 }
 
 
-const PORT = process.env.PORT || config.get('port')
+const PORT_SERVER = process.env.PORT || config.get('port')
+const PORT_SERVER_SOCKET = process.env.PORT || config.get('portWebSocket')
 
 async function start() {
 	try {
 		await mongoose.connect(process.env.MONGODB_URI || config.get('mongoUri'))
 		
-		server.listen(PORT, () => {
-			console.log('App started on port: ', PORT)
+		server.listen(PORT_SERVER, () => {
+			console.log('App started on port: ', PORT_SERVER)
 		})
-		webSocketServer.listen(8080, () => {
-			console.log('Websocket server stared on port: ', 8080)
+		webSocketServer.listen(PORT_SERVER_SOCKET, () => {
+			console.log('Websocket server stared on port: ', PORT_SERVER_SOCKET)
 		})
 		
 	} catch (e) {
