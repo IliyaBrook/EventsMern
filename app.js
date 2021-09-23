@@ -46,8 +46,8 @@ async function start() {
 		server.listen(PORT, () => {
 			console.log('App started on port: ', PORT)
 		})
-		webSocketServer.listen(8080, () => {
-			console.log('Websocket server stared on port: ', 8080)
+		webSocketServer.listen(PORT, () => {
+			console.log('Websocket server stared on port: ', PORT)
 		})
 		
 	} catch (e) {
