@@ -9,22 +9,27 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
 // nav Styles
 .adminModal {
   margin: 0 !important;
   padding: 0 !important;
-  input.form-control{
-    font-size:80%;
+
+  input.form-control {
+    font-size: 80%;
     height: 1.8rem;
   }
+
   .adminNavWrapper {
     display: flex;
     width: 100%;
     justify-content: space-between;
+
     .adminNavUserNameWrapper {
       display: flex;
       justify-content: center;
-      width:40%;
+      width: 40%;
+
       p {
         height: 65%;
         color: black;
@@ -34,10 +39,12 @@
     }
 
     .adminNavButtonsWrapper {
-      width:60%;
-      .nav-item{
+      width: 60%;
+
+      .nav-item {
         font-size: 90%;
-        .nav-link{
+
+        .nav-link {
           padding: 0 10px 0 10px;
         }
       }
@@ -46,17 +53,18 @@
 }
 
 
-
 @media (max-width: 600px) {
-  .adminModal{
+  .adminModal {
     .adminNavWrapper {
       .adminNavUserNameWrapper {
-        width:30%;
+        width: 30%;
       }
+
       .adminNavButtonsWrapper {
-        width:60%;
-        .nav-item{
-          .nav-link{
+        width: 60%;
+
+        .nav-item {
+          .nav-link {
             padding: 0;
           }
         }
@@ -66,13 +74,34 @@
 }
 
 //users Render styles
-.usersWrapper{
+.usersWrapper {
   width: 100%;
-  display:flex;
-  justify-content:center;
-  .userWrapper{
-    padding:5%;
-    margin:2% 0 2% 0 ;
+  display: flex;
+  justify-content: center;
+
+  .userWrapper {
+    padding: 5%;
+    margin: 2% 0 2% 0;
+
+    .userDetailsEmailWrapper {
+      .email {
+        color: #2196F3;
+      }
+
+      .emailDetails {
+        color: black;
+        margin-left: 5px;
+      }
+    }
+    .userDetailsNameWrapper{
+      .name{
+        color: #2196F3;
+      }
+      .nameDetails {
+        color: black;
+        margin-left: 5px;
+      }
+    }
   }
 }
 

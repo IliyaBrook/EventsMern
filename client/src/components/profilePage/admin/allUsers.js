@@ -63,13 +63,13 @@ const AllUsers = () => {
 								</div>
 							</div>
 						</div>
-						<div>
-							<span className="mr-2 blue-text">Email:</span>
-							<span>{user.email}</span>
+						<div className="userDetailsEmailWrapper">
+							<span className="email">Email:</span>
+							<span className="emailDetails">{user.email}</span>
 						</div>
-						<div>
-							<span className="mr-2 blue-text">Name:</span>
-							<span>{user.name}</span>
+						<div className="userDetailsNameWrapper">
+							<span className="name">Name:</span>
+							<span className="nameDetails">{user.name}</span>
 						</div>
 						<div className='divider mt-3'/>
 						{showRole()}
