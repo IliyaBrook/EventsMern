@@ -116,9 +116,8 @@ const AllEvents = () => {
 		<>
 			<Form>
 				<Form.Group>
-					<Form.Label>Search</Form.Label>
 					<Form.Control
-						type="text" placeholder="Type text filter events"
+						type="text" placeholder="Search"
 						onChange={e => {
 							setFilterInput(e.target.value)
 						}}

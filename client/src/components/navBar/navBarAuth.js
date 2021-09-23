@@ -4,7 +4,6 @@ import ProfilePageModal from "../profilePage/profilePageModal";
 import {connect, useDispatch} from 'react-redux'
 import {logoutAction} from '../../redux/login/loginActions'
 import {useSidenavInitCollapse} from "../../hooks/useSidenavInitCollapse";
-import {push} from "react-router-redux"
 
 const NavBarAuth = ({userData, logoutAction}) => {
 	const dispatch = useDispatch()
@@ -30,13 +29,8 @@ const NavBarAuth = ({userData, logoutAction}) => {
 		<div>
 			<nav>
 				<div className="nav-wrapper #607d8b blue-grey darken-3">
-					<ul className="left hide-on-med-and-down">
-						<li>
-							<button className="btn" onClick={() => dispatch(push("/events"))}>City Events</button>
-						</li>
-					</ul>
-					<div className="logoStyleNotAuth">
-						<Link className="brand-logo center logoStyleNotAuth logoHeader" to="/">
+					<div>
+						<Link className="brand-logo center logoNavBar logoHeader" to="/">
 							<div className="logoHeader">
 								Social City
 							</div>
@@ -83,7 +77,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 					<div className="ml-2">
 						<button className="btn-flat"
 						        onClick={() =>
-							        history.push('/events')}>Events
+							        history.push('/events')}>Event Board
 						</button>
 					</div>
 					

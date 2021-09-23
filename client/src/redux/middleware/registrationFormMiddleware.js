@@ -17,8 +17,8 @@ export const registrationFormMiddleware = ({dispatch, getState}) => {
 				const validateInputs = () => {
 					const emailErrorVal = validator.isEmail(email) ? 'correct' : 'Incorrect email address'
 					const emailClassName = validator.isEmail(email) ? 'correct' : 'invalid'
-					const passwordErrorVal = validator.isLength(password, {min: 5}) ? 'correct' : 'Password minimum length is 5'
-					const passwordClassName = validator.isLength(password, {min: 5}) ? 'correct' : 'invalid'
+					const passwordErrorVal = validator.isLength(password, {min: 6}) ? 'correct' : 'Password minimum length is 6'
+					const passwordClassName = validator.isLength(password, {min: 6}) ? 'correct' : 'invalid'
 					const nameErrorVal = validator.isLength(name, {min: 1}) ? 'correct' : 'Name cannot be empty'
 					const nameClassName = validator.isLength(name, {min: 1}) ? 'correct' : 'invalid'
 					return {

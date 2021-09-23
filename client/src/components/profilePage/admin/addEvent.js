@@ -119,7 +119,6 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 									       ref={startTimeRef}
 									       name="startTime"
 									       defaultValue={inputsState.startTime}
-									       onChange={e => console.log(e)}
 									/>
 									<label htmlFor="startTime" className="curPointer">Start time</label>
 								</div>

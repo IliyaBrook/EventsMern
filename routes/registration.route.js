@@ -6,7 +6,7 @@ const router = Router()
 
 
 const middlewareRegValidate = [
-	body('password', 'Minimum length password 5 character').isLength({min: 5}),
+	body('password', 'Minimum length password 6 character').isLength({min: 6}),
 	body('email', 'Incorrect email address').isEmail(),
 	body('name', 'Name field cannot be empty!').isLength({min: 1}),
 	body('email', 'Email cannot be empty').isLength({min: 1})

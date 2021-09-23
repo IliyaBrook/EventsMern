@@ -20,7 +20,6 @@ export function* eventUpdatedSaga(socket) {
 	while (true) {
 		try {
 			const payload = yield take(channel)
-			console.log({...payload})
 			yield put({type: SOCKET_UPDATE_EVENT, eventUpdated: payload})
 		} catch (errors) {
 			console.error('socket error: ', errors)

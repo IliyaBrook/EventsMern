@@ -16,8 +16,8 @@ export const loginFormMiddleware = ({dispatch, getState}) => {
 				const validateInputs = () => {
 					const emailError = validator.isEmail(email) ? 'correct' : 'Please enter valid email address'
 					const emailClassName = validator.isEmail(email) ? 'correct' : 'invalid'
-					const passwordError = validator.isLength(password, {min: 5}) ? 'correct' : 'Please enter your password'
-					const passwordClassName = validator.isLength(password, {min: 5}) ? 'correct' : 'invalid'
+					const passwordError = validator.isLength(password, {min: 1}) ? 'correct' : 'Please enter your password'
+					const passwordClassName = validator.isLength(password, {min: 1}) ? 'correct' : 'invalid'
 					return {emailError, emailClassName, passwordError, passwordClassName}
 				}
 				const checkAllInput = Object.values(validateInputs()).every(elem => elem === 'correct')

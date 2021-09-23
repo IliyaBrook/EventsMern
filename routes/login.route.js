@@ -23,11 +23,11 @@ module.exports = router.post('/login', loginMiddleWareValidator, async (req, res
 		const user = await User.findOne({email})
 		
 		if (!user) {
-			return res.status(401).json({loginErrors: 'not authorized!'})
+			return res.status(401).json({loginErrors: 'Not authorized!'})
 		}
 		const isMatchPassword = await bcrypt.compare(password, user.password)
 		if (!isMatchPassword) {
-			return res.status(401).json({loginErrors: 'not authorized!'})
+			return res.status(401).json({loginErrors: 'Not authorized!'})
 		}
 		
 		const token = await jwt.sign

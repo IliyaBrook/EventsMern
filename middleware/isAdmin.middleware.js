@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
 	try {
 		const token = req.headers.authorization.split(' ')[1]
 		if (!token ) {
-			return res.status(401).json({message: 'not authorized'})
+			return res.status(401).json({message: 'Not authorized!'})
 		}
 		const userEmail = await jwt.verify(token, config.get('jwtSecret'))
 		const { email } = userEmail
@@ -20,6 +20,6 @@ module.exports = async (req, res, next) => {
 			next()
 		}
 	} catch {
-		return res.status(401).json({message: 'not authorized as administrator'})
+		return res.status(401).json({message: 'Not authorized as administrator'})
 	}
 }

@@ -9,40 +9,44 @@ import {
 	SET_ROLE
 } from "../../profilePage/admin/userManagment/userManagmentTypes"
 import {getUsersAction} from "../../profilePage/admin/userManagment/userManagmentAction"
+import {useRequestSaga} from "../use/useRequestSaga"
 
 
 export function* profilePageModalWatcher() {
-	yield takeEvery(CLICK_RENDER_USERS,getUsersWorker)
-	yield takeEvery(CLICK_RENDER_EVENTS,getEventsWorker)
-	yield takeEvery(CLICK_RENDER_CREATE_EVENT,getCreateEvent)
-	yield takeEvery(SET_ROLE,setUserRoleWorker)
+	yield takeEvery(CLICK_RENDER_USERS, getUsersWorker)
+	yield takeEvery(CLICK_RENDER_EVENTS, getEventsWorker)
+	yield takeEvery(CLICK_RENDER_CREATE_EVENT, getCreateEvent)
+	yield takeEvery(SET_ROLE, setUserRoleWorker)
 }
 
 function* getUsersWorker() {
-	yield put({type:PROFILE_PAGE_USERS_LOADING_TRUE})
-	yield put({type:RENDER_MODAL_CONTENT, payload:'getUsers'})
+	yield put({type: PROFILE_PAGE_USERS_LOADING_TRUE})
+	yield put({type: RENDER_MODAL_CONTENT, payload: 'getUsers'})
 	const getUsers = yield put(getUsersAction())
 	yield getUsers
-	yield put({type:PROFILE_PAGE_USERS_LOADING_FALSE})
+	yield put({type: PROFILE_PAGE_USERS_LOADING_FALSE})
 }
 
 function* getEventsWorker() {
-	yield put({type:RENDER_MODAL_CONTENT, payload:'getEvents'})
+	yield put({type: RENDER_MODAL_CONTENT, payload: 'getEvents'})
 }
 
 function* getCreateEvent() {
-	yield put({type:RENDER_MODAL_CONTENT, payload:'addEvents'})
+	yield put({type: RENDER_MODAL_CONTENT, payload: 'addEvents'})
 }
 
-// const response = useRequest('/profilePage/setAdmin', 'POST', {email:user.email, role:user.role} , token)
-		// await response
-		// console.log('response:',response)
-
-
 function* setUserRoleWorker(event) {
-	const token = select(state => state.loginReducer.token)
-	const response = yield call(fetch,'/profilePage/setAdmin')
-	console.log(event)
-	const eventUser = yield event
-	console.log(eventUser)
+	const token = yield select(state => state.loginReducer.token)
+	try {
+		const res = yield call(useRequestSaga, {
+			url: '/profilePage/setRole', method: 'POST', token, body: {
+				email: event.payload.newUser.email,
+				role: event.payload.newUser.role
+			}
+		})
+	} catch (errors) {
+		yield errors
+		console.log(errors)
+		return yield window.M.toast({html: JSON.stringify(errors)})
+	}
 }

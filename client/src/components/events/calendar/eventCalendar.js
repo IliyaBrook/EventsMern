@@ -34,7 +34,6 @@ const EventCalendar = () => {
 				id: event._id,
 			}
 		}
-		console.log(categoriesFilter)
 		if (categoriesFilter) {
 			return events.filter(event => event.categories === categoriesFilter).map(event => eventTemplate(event))
 		}

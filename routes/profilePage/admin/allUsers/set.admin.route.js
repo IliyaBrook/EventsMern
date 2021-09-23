@@ -18,10 +18,10 @@ const setRole = async (resMessage,req, res,role = 'user') => {
 	}
 }
 
-module.exports = router.post('/setAdmin', isAdmin,async (req, res ) => {
+module.exports = router.post('/setRole', isAdmin,async (req, res ) => {
 	return setRole('role updated', req, res, req.body.role)
 })
 
-module.exports = router.post('/removeAdmin', isAdmin,async (req, res ) => {
-	return setRole('role deleted', req, res )
-})
+// module.exports = router.post('/removeAdmin', isAdmin,async (req, res ) => {
+// 	return setRole('role deleted', req, res )
+// })

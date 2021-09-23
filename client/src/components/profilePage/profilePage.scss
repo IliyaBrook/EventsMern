@@ -9,9 +9,71 @@
   outline: none !important;
   box-shadow: none !important;
 }
+// nav Styles
+.adminModal {
+  margin: 0 !important;
+  padding: 0 !important;
+  input.form-control{
+    font-size:80%;
+    height: 1.8rem;
+  }
+  .adminNavWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .adminNavUserNameWrapper {
+      display: flex;
+      justify-content: center;
+      width:40%;
+      p {
+        height: 65%;
+        color: black;
+        letter-spacing: 0.1rem;
+        font-weight: 450;
+      }
+    }
 
-.dropdown-toggle::after {
-  display: none;
+    .adminNavButtonsWrapper {
+      width:60%;
+      .nav-item{
+        font-size: 90%;
+        .nav-link{
+          padding: 0 10px 0 10px;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  .adminModal{
+    .adminNavWrapper {
+      .adminNavUserNameWrapper {
+        width:30%;
+      }
+      .adminNavButtonsWrapper {
+        width:60%;
+        .nav-item{
+          .nav-link{
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+//users Render styles
+.usersWrapper{
+  width: 100%;
+  display:flex;
+  justify-content:center;
+  .userWrapper{
+    padding:5%;
+    margin:2% 0 2% 0 ;
+  }
 }
 
 
@@ -38,26 +100,22 @@
   cursor: pointer !important;
 }
 
-option{
+option {
   background-color: whitesmoke;
 }
-.allUser{
-  span{
-    margin-right: 3px;
-  }
-  width: 80% !important;
-}
-.showRule{
-  span{
+
+
+.showRule {
+  span {
     margin-right: 3px;
   }
 }
 
-.accordingDescription{
+.accordingDescription {
   color: black;
   white-space: normal;
-  margin: 0!important;
+  margin: 0 !important;
   padding: 0 !important;
-  font-size:15px!important;
-  line-height:180%;
+  font-size: 15px !important;
+  line-height: 180%;
 }
