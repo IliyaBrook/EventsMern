@@ -1,12 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import {Link, useHistory} from "react-router-dom";
 import ProfilePageModal from "../profilePage/profilePageModal";
-import {connect, useDispatch} from 'react-redux'
+import {connect} from 'react-redux'
 import {logoutAction} from '../../redux/login/loginActions'
 import {useSidenavInitCollapse} from "../../hooks/useSidenavInitCollapse";
 
 const NavBarAuth = ({userData, logoutAction}) => {
-	const dispatch = useDispatch()
 	const history = useHistory()
 	const sideNavTrigger = useRef()
 	const dropDownProfile = useRef()
@@ -29,6 +28,11 @@ const NavBarAuth = ({userData, logoutAction}) => {
 		<div>
 			<nav>
 				<div className="nav-wrapper #607d8b blue-grey darken-3">
+					<ul className="left hide-on-med-and-down">
+						<li>
+							<button className="btn" onClick={() => history.push('/events')}>City Events</button>
+						</li>
+					</ul>
 					<div>
 						<Link className="brand-logo center logoNavBar logoHeader" to="/">
 							<div className="logoHeader">
