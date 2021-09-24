@@ -5,6 +5,8 @@ import {
 	PROFILE_PAGE_CREATE_EVENT_LOADING_TRUE,
 	PROFILE_PAGE_EVENTS_LOADING_FALSE,
 	PROFILE_PAGE_EVENTS_LOADING_TRUE,
+	PROFILE_PAGE_HOME_LOADING_FALSE,
+	PROFILE_PAGE_HOME_LOADING_TRUE,
 	PROFILE_PAGE_USERS_LOADING_FALSE,
 	PROFILE_PAGE_USERS_LOADING_TRUE,
 	RENDER_MODAL_CONTENT,
@@ -19,7 +21,8 @@ const userManagmentReducerInitState = {
 	loadings: {
 		usersLoading: false,
 		eventsLoading: false,
-		createEventLoading: false
+		createEventLoading: false,
+		homePageLoading: false
 	}
 }
 export const profileModalReducer = (state = userManagmentReducerInitState, action) => {
@@ -37,7 +40,7 @@ export const profileModalReducer = (state = userManagmentReducerInitState, actio
 		case PROFILE_PAGE_USERS_LOADING_TRUE:
 			return {...state, loadings: {...state.loadings, usersLoading: true}}
 		case PROFILE_PAGE_USERS_LOADING_FALSE:
-			return  {...state, loadings: {...state.loadings, usersLoading: false}}
+			return {...state, loadings: {...state.loadings, usersLoading: false}}
 		case PROFILE_PAGE_EVENTS_LOADING_TRUE:
 			return {...state, loadings: {...state.loadings, eventsLoading: true}}
 		case PROFILE_PAGE_EVENTS_LOADING_FALSE:
@@ -46,6 +49,11 @@ export const profileModalReducer = (state = userManagmentReducerInitState, actio
 			return {...state, loadings: {...state.loadings, createEventLoading: true}}
 		case PROFILE_PAGE_CREATE_EVENT_LOADING_FALSE:
 			return {...state, loadings: {...state.loadings, createEventLoading: false}}
+		case PROFILE_PAGE_HOME_LOADING_TRUE:
+			return {...state, loadings: {...state.loadings, homePageLoading: true}}
+		case PROFILE_PAGE_HOME_LOADING_FALSE:
+			return {...state, loadings: {...state.loadings, homePageLoading: false}}
+		
 		default:
 			return state
 	}

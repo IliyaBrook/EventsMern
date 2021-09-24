@@ -2,6 +2,7 @@ import {call, put, select, takeEvery} from "redux-saga/effects"
 import {
 	CLICK_RENDER_CREATE_EVENT,
 	CLICK_RENDER_EVENTS,
+	CLICK_RENDER_HOME_PAGE,
 	CLICK_RENDER_USERS,
 	PROFILE_PAGE_USERS_LOADING_FALSE,
 	PROFILE_PAGE_USERS_LOADING_TRUE,
@@ -16,6 +17,7 @@ export function* profilePageModalWatcher() {
 	yield takeEvery(CLICK_RENDER_USERS, getUsersWorker)
 	yield takeEvery(CLICK_RENDER_EVENTS, getEventsWorker)
 	yield takeEvery(CLICK_RENDER_CREATE_EVENT, getCreateEvent)
+	yield takeEvery(CLICK_RENDER_HOME_PAGE, getHomePage)
 	yield takeEvery(SET_ROLE, setUserRoleWorker)
 }
 
@@ -35,10 +37,14 @@ function* getCreateEvent() {
 	yield put({type: RENDER_MODAL_CONTENT, payload: 'addEvents'})
 }
 
+function* getHomePage() {
+	yield put({type: RENDER_MODAL_CONTENT, payload: 'profileHome'})
+}
+
 function* setUserRoleWorker(event) {
 	const token = yield select(state => state.loginReducer.token)
 	try {
-		const res = yield call(useRequestSaga, {
+		yield call(useRequestSaga, {
 			url: '/profilePage/setRole', method: 'POST', token, body: {
 				email: event.payload.newUser.email,
 				role: event.payload.newUser.role
