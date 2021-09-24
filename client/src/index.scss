@@ -1,11 +1,18 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~materialize-css/sass/materialize";
+
 html, body {
   margin: 0;
   height: 100%;
   width: auto;
-  padding:0!important;
-  overflow: visible!important;
+  padding: 0 !important;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+}
+
+.modal-content .adminModal {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
 }
 
 
@@ -22,11 +29,13 @@ h1 {
   height: 100% !important;
   width: 130% !important;
 }
+
 .sidenav-overlay {
   position: fixed !important;
   left: 301px;
   background-color: transparent !important;
 }
+
 .modal-overlay {
   background-color: transparent !important;
 }

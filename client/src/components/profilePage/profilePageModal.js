@@ -9,8 +9,10 @@ import AddEvent from "./admin/addEvent/addEvent"
 import {
 	CLICK_RENDER_CREATE_EVENT,
 	CLICK_RENDER_EVENTS,
+	CLICK_RENDER_HOME_PAGE,
 	CLICK_RENDER_USERS
 } from "../../redux/profilePage/admin/userManagment/userManagmentTypes"
+import ProfileHomePage from "./profileHomePage"
 
 
 const ProfilePageModal = () => {
@@ -23,14 +25,22 @@ const ProfilePageModal = () => {
 			return (
 				<div className="adminNavWrapper">
 					<div className="adminNavUserNameWrapper">
-						<p className="form-label">
-							{userName}
-						</p>
+						<div>
+							<p className="form-label">
+								{userName}
+							</p>
+						</div>
 					</div>
 					<div className="adminNavButtonsWrapper">
 						<Nav fill variant="tabs"
 						     activeKey={componentClicked}
 						>
+							<Nav.Item>
+								<Nav.Link onClick={() => {
+									dispatch({type: CLICK_RENDER_HOME_PAGE})
+								}} eventKey="profileHome">Home</Nav.Link>
+							</Nav.Item>
+							
 							<Nav.Item>
 								<Nav.Link onClick={() => {
 									dispatch({type: CLICK_RENDER_USERS})
@@ -59,19 +69,23 @@ const ProfilePageModal = () => {
 			loadings: {
 				usersLoading,
 				eventsLoading,
-				createEventLoading
+				createEventLoading,
+				homePageLoading
 			}
 		}
 	} = useSelector(state => state)
 	
 	const renderContent = () => {
 		switch (componentClicked) {
+			case 'profileHome':
+				return homePageLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <ProfileHomePage/>
 			case 'getUsers':
 				return usersLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <AllUsers/>
 			case 'getEvents':
 				return eventsLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <AllEvents/>
 			case 'addEvents':
 				return createEventLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <AddEvent/>
+			
 		}
 	}
 	
