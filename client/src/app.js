@@ -24,10 +24,8 @@ export const App = () => {
 		const body = document.querySelector('body')
 		const windowSize = document.body.clientWidth
 		if (location.pathname === '/' && windowSize < 670) {
-			console.log('true')
 			body.style.overflow = 'hidden'
 		} else {
-			console.log('false')
 			body.style.overflow = 'visible'
 		}
 	}, [resizeWidth, location])

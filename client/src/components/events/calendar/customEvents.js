@@ -1,8 +1,15 @@
-import {OverlayTrigger, Popover} from "react-bootstrap";
 import './eventCalendar.scss'
+import {OverlayTrigger, Popover} from "react-bootstrap"
 
 export const customEvents = (info) => {
-	
+	const widthScreen = document.body.clientWidth
+	if (widthScreen < 500) {
+		return (
+			<div className="fc-content cursorPointer" id={info.event.id}>
+				<span className="fc-title">{info.event.title}</span>
+			</div>
+		)
+	}
 	
 	const CustomPopover = (props) => {
 		return (

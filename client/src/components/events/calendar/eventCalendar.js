@@ -12,12 +12,11 @@ import CalendarModalEvent from "../modalEvent/calendarModal";
 
 
 const EventCalendar = () => {
-	
 	const calendarRef = useRef()
 	const {events} = useSelector(state => state.eventReducer)
+	const resizeWidth = useSelector(state => state.windowSizeReducer.width)
 	const dispatch = useDispatch()
 	const calendarModalRef = useRef()
-	
 	
 	
 	const eventProvider = () => {
