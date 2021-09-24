@@ -11,9 +11,7 @@ const AllUsers = () => {
 	const dispatch = useDispatch()
 	const users = useSelector(state => state.profileModalReducer.users)
 	
-	
 	const showUsers = () => {
-		
 		
 		return users.filter(user => user.name.toLowerCase().includes(filterInput)).map((user, index) => {
 			const deleteUserEvent = (event) => {
@@ -34,7 +32,7 @@ const AllUsers = () => {
 									<input type="checkbox"
 									       name={user.email}
 									       id={index}
-									       checked={users[index].role === 'admin' && true}
+									       checked={user.role === 'admin' && true}
 									       onChange={() => {
 										       dispatch(setRoleAction(users[index], index))
 									       }}/>
@@ -67,7 +65,7 @@ const AllUsers = () => {
 							<span className="email">Email:</span>
 							<span className="emailDetails">{user.email}</span>
 						</div>
-						<div className="userDetailsNameWrapper">
+						<div>
 							<span className="name">Name:</span>
 							<span className="nameDetails">{user.name}</span>
 						</div>
@@ -85,7 +83,7 @@ const AllUsers = () => {
 					<Form.Control
 						type="text" placeholder="Search"
 						onChange={e => {
-							setFilterInput(e.target.value)
+							setFilterInput(e.target.value.toLowerCase())
 						}}
 					/>
 				</Form.Group>

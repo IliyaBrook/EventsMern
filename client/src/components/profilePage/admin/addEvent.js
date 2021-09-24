@@ -12,14 +12,35 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 	const endDateRef = useRef()
 	const startTimeRef = useRef()
 	const endTimeRef = useRef()
-	const dropDownRef = useRef()
+	
+	
+	useEffect(() => {
+		window.M.updateTextFields()
+	})
 	
 	useEffect(() => {
 		pickerEventHandler(window.M.Datepicker, startDateRef, getStartDateHandler)
 		pickerEventHandler(window.M.Datepicker, endDateRef, getEndDateHandler)
-		pickerEventHandler(window.M.Timepicker, startTimeRef, () => getTime(startTimeRef, dispatchInputs, "startTime"))
-		pickerEventHandler(window.M.Timepicker, endTimeRef, () => getTime(endTimeRef, dispatchInputs, "endTime"))
-		window.M.Modal.init(dropDownRef.current)
+		window.M.Timepicker.init(startTimeRef.current, {
+			container: 'body',
+			showClearBtn: true,
+		})
+		window.M.Timepicker.init(endTimeRef.current, {
+			container: 'body',
+			showClearBtn: true,
+		})
+		const startTimeId = startTimeRef.current.addEventListener('change', event => {
+			const startTime = `${event.target.M_Timepicker.time} ${event.target.M_Timepicker.amOrPm}`
+			dispatchInputs({startTime})
+		})
+		const endTimeId = endTimeRef.current.addEventListener('change', event => {
+			const endTime = `${event.target.M_Timepicker.time} ${event.target.M_Timepicker.amOrPm}`
+			dispatchInputs({endTime})
+		})
+		return () => {
+			removeEventListener('change',startTimeId)
+			removeEventListener('change',endTimeId)
+		}
 	}, [])
 	
 	
@@ -32,19 +53,12 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 		const endDate = useFormatDate(event)
 		return dispatchInputs({endDate})
 	}
-	const getTime = (ref, actionFunc, key) => {
-		const amOrPmEnd = ref.current.M_Timepicker.amOrPm
-		let hour = ref.current.M_Timepicker.hours
-		let minute = ref.current.M_Timepicker.minutes
-		hour = hour.toString().length < 2 ? "0" + hour.toString() : hour.toString()
-		minute = minute.toString().length < 2 ? "0" + minute.toString() : minute.toString()
-		const time = `${hour}:${minute} ${amOrPmEnd}`
-		return actionFunc({[key]: time})
-	}
+	
 	const pickerEventHandler = (materializePicker, ref, onSelectCallback) => {
 		return materializePicker.init(ref.current, {
 			container: 'body',
 			onSelect: onSelectCallback,
+			showClearBtn: true,
 		})
 	}
 	
@@ -70,6 +84,7 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 		colorInput.value === 'null' ? colorInput.style.background = 'white' : null
 	}
 	
+	
 	return (
 		<div>
 			<form onSubmit={submitEvent}>
@@ -90,7 +105,7 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 								<div className="input-field">
 									<i className="material-icons prefix">date_range</i>
 									<input id="startDate" type="text"
-									       className="validate datepicker inputAddEvent" ref={startDateRef}
+									       className="validate datepicker" ref={startDateRef}
 									       name="startDate"
 									       defaultValue={inputsState.startDate}
 									/>
@@ -103,9 +118,9 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 								<div className="input-field">
 									<i className="material-icons prefix">date_range</i>
 									<input id="endDate"
-									       type="text"
 									       defaultValue={inputsState.endDate}
-									       className="validate datepicker inputAddEvent" ref={endDateRef}
+									       type="text"
+									       className="datepicker" ref={endDateRef}
 									       name="endDate"/>
 									<label htmlFor="endDate" className="curPointer">End date</label>
 								</div>
@@ -115,10 +130,10 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 								<div className="input-field">
 									<i className="material-icons prefix">access_time</i>
 									<input id="startTime" type="text"
-									       className="validate datepicker timepicker curPointer inputAddEvent"
+									       defaultValue={inputsState.startTime}
+									       className="timepicker"
 									       ref={startTimeRef}
 									       name="startTime"
-									       defaultValue={inputsState.startTime}
 									/>
 									<label htmlFor="startTime" className="curPointer">Start time</label>
 								</div>
@@ -128,7 +143,7 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 								<div className="input-field">
 									<i className="material-icons prefix">access_time</i>
 									<input id="endTime" type="text"
-									       className="validate timepicker inputAddEvent"
+									       className="timepicker"
 									       ref={endTimeRef}
 									       name="endTime"
 									       defaultValue={inputsState.endTime}
