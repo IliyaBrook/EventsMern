@@ -1,0 +1,59 @@
+
+.selectColor .inputAddEvent .form-control {
+  color: white !important;
+}
+
+#color {
+  color: #2bbbad;
+}
+
+.addEventInputsWrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  .eventNameLabel {
+    height: 2rem;
+    display: flex;
+
+    .inputName {
+      width: 100%;
+      height: 10%;
+    }
+  }
+
+  .pickerSelectorsWrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .dateTimePicker {
+      width: 50%;
+    }
+
+    .colorCategoriesPickerWrapper {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+
+      .colorCategoriesJustify {
+        width: 60%;
+      }
+    }
+
+  }
+
+  .inputsSpotsWrapper {
+    margin-top: 9%;
+  }
+
+  .inputsDescriptionWrapper {
+    textarea {
+      height: auto;
+    }
+  }
+  .submitButton{
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+  }
+}

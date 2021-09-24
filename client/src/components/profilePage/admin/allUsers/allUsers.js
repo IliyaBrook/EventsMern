@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Button, Form} from "react-bootstrap"
-import {deleteUserAction, setRoleAction} from "../../../redux/profilePage/admin/userManagment/userManagmentAction"
-import '../profilePage.scss'
+import {deleteUserAction, setRoleAction} from "../../../../redux/profilePage/admin/userManagment/userManagmentAction"
+import '../../profilePage.scss'
 
 
 const AllUsers = () => {
@@ -39,7 +39,6 @@ const AllUsers = () => {
 									<span className="lever"/>
 									Admin</label>
 							</div>
-						
 						</div>
 					</>
 				)

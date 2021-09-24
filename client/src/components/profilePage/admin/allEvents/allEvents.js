@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import {Button, Form, ListGroup} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux"
-import './admin.scss'
-import {deleteEvent} from "../../../redux/events/eventsAction"
-import {AccordionDropDown} from "../../styled/accordion"
+import '../allUsers/allUsers.scss'
+import {deleteEvent} from "../../../../redux/events/eventsAction"
+import {AccordionDropDown} from "../../../styled/accordion"
+import './allEvents.scss'
 
 const AllEvents = () => {
 	const [filterInput, setFilterInput] = useState('')

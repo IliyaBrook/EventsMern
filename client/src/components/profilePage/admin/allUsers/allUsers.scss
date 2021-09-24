@@ -1,0 +1,21 @@
+.showSetRoleWrapper{
+  display: flex;
+  width:100%!important;
+  .roleNameWrapper{
+    display: flex;
+    color: #2196F3;
+    width: 35%!important;
+    p{
+      color:black;
+      margin-left:2%
+    }
+  }
+  .setRoleSwitchWrapper{
+    width:65%!important;
+  }
+}
+
+
+
+
+

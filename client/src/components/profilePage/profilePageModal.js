@@ -2,10 +2,10 @@ import React from 'react'
 import './profilePage.scss'
 import {useDispatch, useSelector} from 'react-redux'
 import {Nav} from 'react-bootstrap'
-import AllUsers from "./admin/allUsers"
+import AllUsers from "./admin/allUsers/allUsers"
 import Spinner from "../styled/spinner"
-import AllEvents from "./admin/allEvents"
-import AddEvent from "./admin/addEvent"
+import AllEvents from "./admin/allEvents/allEvents"
+import AddEvent from "./admin/addEvent/addEvent"
 import {
 	CLICK_RENDER_CREATE_EVENT,
 	CLICK_RENDER_EVENTS,
