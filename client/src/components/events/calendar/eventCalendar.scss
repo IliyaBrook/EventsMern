@@ -1,5 +1,6 @@
 .calendarEventsWrapper {
   padding: 0 2% 3% 2%;
+
   .calendar-wrapper {
     padding: 0 3% 5% 3%;
   }
@@ -34,3 +35,30 @@
 .cursorPointer {
   cursor: pointer !important;
 }
+
+//@media (max-width: 500px) {
+//  .calendarEventsWrapper {
+//
+//    .justifyFilterWrapper {
+//      height: 50% !important;
+//      .filterWrapper {
+//        height: 50% !important;
+//        padding: 0.5rem!important;
+//        .filterControls{
+//          height: 50%;
+//        }
+//        label.form-label{
+//          display: none;
+//        }
+//      }
+//    }
+//  }
+//  .fc .fc-toolbar-title {
+//    font-size: 1.4em;
+//    margin: 0;
+//  }
+//  .fc .fc-toolbar.fc-header-toolbar{
+//    width:70%;
+//    position: absolute;
+//  }
+//}

@@ -5,14 +5,6 @@ html, body {
   margin: 0;
   height: 100%;
   width: auto;
-  padding: 0 !important;
-  -webkit-overflow-scrolling: touch;
-  overflow: auto;
-}
-
-.modal-content .adminModal {
-  -webkit-overflow-scrolling: touch;
-  overflow: auto;
 }
 
 
@@ -43,6 +35,14 @@ h1 {
 .form-switch {
   padding-left: 0 !important;
 }
+//overflow mobile: scroll
+@media (max-width: 768px) {
+  body{
+    //overflow: hidden !important;
+  }
+}
+
+
 
 
 //materialize fixed

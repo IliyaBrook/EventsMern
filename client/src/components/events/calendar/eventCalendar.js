@@ -72,7 +72,7 @@ const EventCalendar = () => {
 	}, [events])
 	return (
 		<div className="calendarEventsWrapper">
-			<div className="d-flex w-100 justify-content-end ">
+			<div className="d-flex w-100 justify-content-end justifyFilterWrapper">
 				<Form.Group className="p-3 filterWrapper">
 					<Form.Label>Event filter</Form.Label>
 					<Form.Control as="select" className="w-100 mr-3 filterControls"
