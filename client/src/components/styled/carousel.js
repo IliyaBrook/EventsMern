@@ -33,8 +33,9 @@ const Carousel = (props) => {
 		                  showStatus={false}
 		                  showArrows={false}
 		                  autoPlay={true}
-		                  interval={7000}
+		                  interval={11000}
 		                  infiniteLoop={true}
+		                  transitionTime={800}
 		                  {...props}
 		>
 			{renderImgByWidth()}
