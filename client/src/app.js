@@ -17,12 +17,28 @@ import {push} from "react-router-redux"
 export const App = () => {
 	const location = useLocation()
 	const dispatch = useDispatch()
+	const resizeWidth = useSelector(state => state.windowSizeReducer.width)
+	
+	
+	useEffect(() => {
+		const body = document.querySelector('body')
+		const windowSize = document.body.clientWidth
+		if (location.pathname === '/' && windowSize < 670) {
+			console.log('true')
+			body.style.overflow = 'hidden'
+		} else {
+			console.log('false')
+			body.style.overflow = 'visible'
+		}
+	}, [resizeWidth, location])
+	
 	useEffect(() => {
 		dispatch({type: 'ENTER_PAGE'})
 		if (location.pathname !== '/') {
 			dispatch(push(location.pathname))
 		}
 	}, [])
+	
 	const {
 		loginReducer: {loading: loginLoading, isAuth},
 		registrationReducer: {loading: registrationLoading},

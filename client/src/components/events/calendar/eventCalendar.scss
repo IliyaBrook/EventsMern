@@ -36,29 +36,8 @@
   cursor: pointer !important;
 }
 
-//@media (max-width: 500px) {
-//  .calendarEventsWrapper {
-//
-//    .justifyFilterWrapper {
-//      height: 50% !important;
-//      .filterWrapper {
-//        height: 50% !important;
-//        padding: 0.5rem!important;
-//        .filterControls{
-//          height: 50%;
-//        }
-//        label.form-label{
-//          display: none;
-//        }
-//      }
-//    }
-//  }
-//  .fc .fc-toolbar-title {
-//    font-size: 1.4em;
-//    margin: 0;
-//  }
-//  .fc .fc-toolbar.fc-header-toolbar{
-//    width:70%;
-//    position: absolute;
-//  }
-//}
+@media (max-width: 350px) {
+  .fc .fc-toolbar-title{
+    width:50px;
+  }
+}
