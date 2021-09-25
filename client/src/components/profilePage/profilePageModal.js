@@ -12,7 +12,7 @@ import {
 	CLICK_RENDER_HOME_PAGE,
 	CLICK_RENDER_USERS
 } from "../../redux/profilePage/admin/userManagment/userManagmentTypes"
-import ProfileHomePage from "./profileHomePage"
+import ProfileHomePage from "./profileHomePage/profileHomePage"
 
 
 const ProfilePageModal = () => {

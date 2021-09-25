@@ -14,12 +14,12 @@ export function* refreshSaga() {
 }
 
 function* requestDataWorker() {
-	
-	yield put({type:HOME_PAGE_LOADING_TRUE})
 	const localStorageData = yield JSON.parse(localStorage.getItem('userData'))
 	if (localStorageData) {
+		yield put({type:HOME_PAGE_LOADING_TRUE})
 		const {data} = yield call(useRequestSaga, {url: '/refresh', token: localStorageData.token})
 		if (!data.isAuth) {
+			yield put({type: HOME_PAGE_LOADING_FALSE})
 			return yield put(logoutAction())
 		}
 		yield put({type: SET_LOGIN_DATA, payload: {...data, token: localStorageData.token}})
