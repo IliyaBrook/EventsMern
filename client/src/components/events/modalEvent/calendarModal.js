@@ -18,6 +18,7 @@ const CalendarModalEvent = ({props}) => {
 	const handleClose = () => {
 		const instance = window.M.Modal.init(calendarModalRef.current)
 		instance.close()
+		document.body.style.overflow = 'visible'
 	}
 	const handleSubscribe = () => {
 		dispatch(subscribeEventAction(event))
