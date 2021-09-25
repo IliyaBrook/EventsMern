@@ -28,7 +28,7 @@
 
     .dateTimePicker {
       div {
-        width: 80%!important;
+        width: 80% !important;
       }
     }
 
@@ -62,23 +62,18 @@
   }
 }
 
-//test
-//.dateTimePicker{
-//  width: 50% !important;
-//}
-//.curPointer{
-//  width: 50% !important;
-//}
-//
-//.input-field{
-//  width: 100% !important;
-//}
-.inputsStartDateWrapper {
-  width: 80% !important;
-  margin-right: 20px;
+@media (max-width: 450px) {
+  .datepicker-controls {
+    .select-wrapper {
+      .dropdown-trigger, .select-dropdown{
+        width: 80px !important;
+      }
+    }
+  }
 }
 
-//.datepicker{
-//  width: 50% !important;
-//}
+
+
+
+
 
