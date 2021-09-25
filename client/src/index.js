@@ -14,6 +14,7 @@ import {rootReducer} from './redux/rootReducer'
 import {createBrowserHistory} from 'history'
 import createSagaMiddleware from 'redux-saga'
 import {rootSaga} from './redux/sagas/rootSaga'
+import {checkRouteMiddleware} from "./redux/middleware/checkRouteMiddleware"
 
 const saga = createSagaMiddleware()
 const browserHistory = createBrowserHistory()
@@ -27,7 +28,8 @@ const store = createStore(rootReducer, composeEnhancers(
 	applyMiddleware(
 		thunk, middlewareRouting,saga,
 		registrationFormMiddleware,
-		loginFormMiddleware
+		loginFormMiddleware,
+		checkRouteMiddleware
 	)
 ))
 const history = syncHistoryWithStore(browserHistory, store)
