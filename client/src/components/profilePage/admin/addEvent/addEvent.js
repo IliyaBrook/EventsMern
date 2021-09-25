@@ -22,6 +22,12 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 		window.M.updateTextFields()
 		pickerEventHandler(window.M.Datepicker, startDateRef, getStartDateHandler)
 		pickerEventHandler(window.M.Datepicker, endDateRef, getEndDateHandler)
+		
+		// const inputs = document.querySelectorAll('input')
+		// inputs.forEach(input => {
+		// 	input.readOnly = false
+		// })
+		
 		window.M.Timepicker.init(startTimeRef.current, {
 			container: 'body',
 			showClearBtn: true,
@@ -30,6 +36,7 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 			container: 'body',
 			showClearBtn: true,
 		})
+		
 		const startTimeId = startTimeRef.current.addEventListener('change', event => {
 			const startTime = `${event.target.M_Timepicker.time} ${event.target.M_Timepicker.amOrPm}`
 			dispatchInputs({startTime})
@@ -42,6 +49,7 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 			removeEventListener('change', startTimeId)
 			removeEventListener('change', endTimeId)
 		}
+		
 	}, [])
 	
 	
@@ -67,8 +75,11 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 		return dispatchInputs({[event.target.name]: event.target.value})
 	}
 	const clearAllInputs = () => {
-		const input = document.querySelectorAll(".inputAddEvent")
-		input.forEach(elem => elem.value = '')
+		const inputs = document.querySelectorAll('input')
+		inputs.forEach(elem => {
+			elem.removeAttribute("readonly")
+			elem.value = null
+		})
 		document.querySelector('.selectColor').style.background = 'white'
 	}
 	
@@ -114,7 +125,9 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 								<input id="startDate" type="text"
 								       className="datepicker" ref={startDateRef}
 								       name="startDate"
-								       defaultValue={inputsState.startDate}
+								       readOnly={false}
+								       onChange={e => e}
+								       value={inputsState.startDate}
 								/>
 								<label htmlFor="startDate" className="curPointer">Start date</label>
 							</div>

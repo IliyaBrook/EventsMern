@@ -9,6 +9,7 @@ const ProfileHomePage = () => {
 			</div>
 			<div className="profileHomeContentWrapper">
 				<div className="profileHomeEventsWrapper">
+				
 				</div>
 			</div>
 		</div>
