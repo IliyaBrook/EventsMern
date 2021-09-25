@@ -27,8 +27,11 @@
     justify-content: space-between;
 
     .dateTimePicker {
-      width: 50%;
+      div {
+        width: 75%!important;
+      }
     }
+
 
     .colorCategoriesPickerWrapper {
       width: 50%;
@@ -51,9 +54,31 @@
       height: auto;
     }
   }
-  .submitButton{
+
+  .submitButton {
     display: flex;
     justify-content: center;
     margin: 5%;
   }
 }
+
+//test
+//.dateTimePicker{
+//  width: 50% !important;
+//}
+//.curPointer{
+//  width: 50% !important;
+//}
+//
+//.input-field{
+//  width: 100% !important;
+//}
+.inputsStartDateWrapper {
+  width: 80% !important;
+  margin-right: 20px;
+}
+
+//.datepicker{
+//  width: 50% !important;
+//}
+
