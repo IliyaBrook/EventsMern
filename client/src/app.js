@@ -28,7 +28,7 @@ export const App = () => {
 		} else {
 			body.style.overflow = 'visible'
 		}
-	}, [resizeWidth, location])
+	}, [resizeWidth, location.pathname])
 	
 	useEffect(() => {
 		dispatch({type: 'ENTER_PAGE'})

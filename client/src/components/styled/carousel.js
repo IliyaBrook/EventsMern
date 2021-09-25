@@ -35,7 +35,7 @@ const Carousel = (props) => {
 		                  autoPlay={true}
 		                  interval={11000}
 		                  infiniteLoop={true}
-		                  transitionTime={800}
+		                  transitionTime={1000}
 		                  {...props}
 		>
 			{renderImgByWidth()}
