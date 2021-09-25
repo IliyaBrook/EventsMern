@@ -26,7 +26,9 @@ const ProfilePageModal = () => {
 				<div className="adminNavWrapper">
 					<div className="adminNavUserNameWrapper">
 						<div>
-							<p className="form-label">
+							<p className="form-label" onClick={() => {
+								dispatch({type: CLICK_RENDER_HOME_PAGE})
+							}}>
 								{userName}
 							</p>
 						</div>
@@ -35,12 +37,6 @@ const ProfilePageModal = () => {
 						<Nav fill variant="tabs"
 						     activeKey={componentClicked}
 						>
-							<Nav.Item>
-								<Nav.Link onClick={() => {
-									dispatch({type: CLICK_RENDER_HOME_PAGE})
-								}} eventKey="profileHome">Home</Nav.Link>
-							</Nav.Item>
-							
 							<Nav.Item>
 								<Nav.Link onClick={() => {
 									dispatch({type: CLICK_RENDER_USERS})
@@ -85,7 +81,8 @@ const ProfilePageModal = () => {
 				return eventsLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <AllEvents/>
 			case 'addEvents':
 				return createEventLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <AddEvent/>
-			
+			default:
+				return homePageLoading ? <Spinner justify="center" margin="5rem 0 0 0"/> : <ProfileHomePage/>
 		}
 	}
 	

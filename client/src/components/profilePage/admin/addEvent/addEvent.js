@@ -112,7 +112,7 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 							<div className="input-field">
 								<i className="material-icons prefix">date_range</i>
 								<input id="startDate" type="text"
-								       className="validate datepicker" ref={startDateRef}
+								       className="datepicker" ref={startDateRef}
 								       name="startDate"
 								       defaultValue={inputsState.startDate}
 								/>
