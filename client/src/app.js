@@ -1,20 +1,21 @@
 import React, {useEffect} from 'react'
 import Switch from "react-bootstrap/Switch"
-import {Redirect, Route, useLocation} from "react-router-dom"
-
-import NavBarNotAuth from "./components/navBar/navBarNotAuth"
-import RegisterPage from "./components/registerPage/registerPage"
+import {Route, useLocation} from "react-router-dom"
 import NavBarAuth from "./components/navBar/navBarAuth"
 import './components/navBar/navBars.scss'
-import LoginPage from "./components/loginPage/loginPage"
-import HomePageNotAuth from "./components/homePage/homePageNotAuth"
 import HomePageAuth from "./components/homePage/homePageAuth"
 import EventCalendar from "./components/events/calendar/eventCalendar"
 import {useDispatch, useSelector} from 'react-redux'
-import Spinner from "./components/styled/spinner"
 import {push} from "react-router-redux"
+import NavBarNotAuth from "./components/navBar/navBarNotAuth"
+import Spinner from "./components/styled/spinner"
+import RegisterPage from "./components/registerPage/registerPage"
+import {Redirect} from "react-router"
+import LoginPage from "./components/loginPage/loginPage"
+import HomePageNotAuth from "./components/homePage/homePageNotAuth"
 
 export const App = () => {
+	
 	const location = useLocation()
 	const dispatch = useDispatch()
 	const resizeWidth = useSelector(state => state.windowSizeReducer.width)
@@ -42,8 +43,10 @@ export const App = () => {
 	const {
 		loginReducer: {loading: loginLoading, isAuth},
 		registrationReducer: {loading: registrationLoading},
-		homePageReducer: {loading: homePageLoading}
+		homePageReducer: {loading: homePageLoading},
+		eventReducer: {events}
 	} = useSelector(state => state)
+	
 	
 	switch (isAuth) {
 		case true:

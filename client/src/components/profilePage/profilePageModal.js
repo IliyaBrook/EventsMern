@@ -91,7 +91,7 @@ const ProfilePageModal = () => {
 			<div id="modal1" className="modal modal-fixed-footer">
 				<div className="modal-content adminModal">
 					{adminNavBar()}
-					<div className="m-3">
+					<div>
 						{renderContent()}
 					</div>
 				</div>

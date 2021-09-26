@@ -25,7 +25,9 @@ const composeEnhancers = composeWithDevTools({
 
 const store = createStore(rootReducer, composeEnhancers(
 	applyMiddleware(
-		thunk, middlewareRouting,saga,
+		thunk,
+		middlewareRouting,
+		saga,
 		registrationFormMiddleware,
 		loginFormMiddleware
 	)
@@ -34,13 +36,15 @@ const history = syncHistoryWithStore(browserHistory, store)
 saga.run(rootSaga)
 
 
-const app = (
-	<Provider store={store}>
-		<Router history={history}>
-			<App/>
-		</Router>
-	</Provider>
-)
+const Index = () => {
+	return (
+		<Provider store={store}>
+			<Router history={history}>
+				<App/>
+			</Router>
+		</Provider>
+	)
+}
 
 
-render(app, document.getElementById('root'))
+render(<Index/>, document.getElementById('root'))
