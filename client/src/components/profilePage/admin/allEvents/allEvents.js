@@ -8,7 +8,7 @@ import './allEvents.scss'
 
 const AllEvents = () => {
 	const [filterInput, setFilterInput] = useState('')
-	const eventsState = useSelector(state => state.eventReducer)
+	const events = useSelector(state => state.eventReducer.events)
 	const dispatch = useDispatch()
 	
 	const allEventsRender = () => {
@@ -18,10 +18,8 @@ const AllEvents = () => {
 		}
 		
 		
-		return eventsState?.events.filter(event =>
+		return events.filter(event =>
 			event.eventName.toLowerCase().includes(filterInput))?.map((event, index) => {
-			
-			
 			return <div className="row" key={index + 1}>
 				<div className="col s12 m6">
 					<div className="card blue-grey darken-1">
