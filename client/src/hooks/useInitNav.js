@@ -1,7 +1,7 @@
 import {useEffect} from "react"
 
 
-export const useSidenavInitCollapse = (ref) => {
+export const useInitSideNav = (ref) => {
 	const winEventId = (event) => {
 		if (ref.current && ref.current.contains(event.target)) {
 			const instance = M.Sidenav.getInstance(ref.current)
@@ -14,3 +14,4 @@ export const useSidenavInitCollapse = (ref) => {
 	}, [])
 	return () => removeEventListener("click", winEventId)
 }
+

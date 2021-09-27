@@ -5,6 +5,7 @@ import {CLICKED_EVENT_CALENDAR} from "../../../redux/events/eventsTypes"
 import moment from "moment";
 import RenderCalendar from "./renderCalendar"
 import CalendarCategoriesFilter from "./calendarCategoriesFilter"
+import CalendarModalEvent from "../modalEvent/calendarModalEvent"
 
 const EventCalendar = () => {
 	const calendarRef = useRef()
@@ -30,6 +31,7 @@ const EventCalendar = () => {
 				events={events}
 				categoriesFilter={categoriesFilter}
 			/>
+			<CalendarModalEvent calendarModalRef={calendarModalRef}/>
 		</div>
 	)
 }

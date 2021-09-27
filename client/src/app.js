@@ -3,7 +3,7 @@ import Switch from "react-bootstrap/Switch"
 import {Route, useLocation} from "react-router-dom"
 import NavBarAuth from "./components/navBar/navBarAuth"
 import './components/navBar/navBars.scss'
-import HomePageAuth from "./components/homePage/homePageAuth"
+import HomePageAuth from "./components/homePage/auth/homePageAuth"
 import EventCalendar from "./components/events/calendar/eventCalendar"
 import {useDispatch, useSelector} from 'react-redux'
 import {push} from "react-router-redux"
@@ -12,7 +12,7 @@ import Spinner from "./components/styled/spinner"
 import RegisterPage from "./components/registerPage/registerPage"
 import {Redirect} from "react-router"
 import LoginPage from "./components/loginPage/loginPage"
-import HomePageNotAuth from "./components/homePage/homePageNotAuth"
+import HomePageNotAuth from "./components/homePage/notAuth/homePageNotAuth"
 
 export const App = () => {
 	

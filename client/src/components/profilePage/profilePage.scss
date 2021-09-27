@@ -10,71 +10,39 @@
   box-shadow: none !important;
 }
 
-// nav Styles
-.adminModal {
-  margin: 0 !important;
-  padding: 0 !important;
-
-  input.form-control {
-    font-size: 80%;
-    height: 1.8rem;
-  }
-
-  .form-group {
-    margin: 0 3% 5% 3%;
-  }
-
-  .adminNavWrapper {
-    display: flex;
+.adminNavWrapper {
+  margin:0 0 10% 0!important;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  .adminNavButtonsWrapper {
     width: 100%;
-    justify-content: space-between;
-
-    .adminNavUserNameWrapper {
-      display: flex;
-      justify-content: center;
-      width: 40%;
-
-      p {
-        height: 65%;
-        color: black;
-        letter-spacing: 0.1rem;
-        font-weight: 450;
-        cursor: pointer;
+    .nav-item {
+      font-size: 100%;
+      .nav-link {
+        padding: 0 10px 0 10px;
       }
     }
-
+  }
+}
+@media (max-width:450px) {
+  .adminNavWrapper {
     .adminNavButtonsWrapper {
-      width: 50%;
-
       .nav-item {
-        font-size: 90%;
-
-        .nav-link {
-          padding: 0 10px 0 10px;
-        }
+        font-size: 75%;
       }
     }
   }
 }
 
-
-@media (max-width: 600px) {
-  .adminModal {
-    .adminNavWrapper {
-      .adminNavUserNameWrapper {
-        width: 30%;
-      }
-
-      .adminNavButtonsWrapper {
-        width: 67%;
-        margin-right: 2%;
-
-        .nav-item {
-          .nav-link {
-            padding: 0;
-          }
-        }
-      }
+.homePageAdminXs {
+  margin-bottom: 5%;
+  display: block;
+  div{
+    position: absolute;
+    top: 0;
+    Button{
+      height: 50%;
     }
   }
 }
@@ -130,6 +98,7 @@
     top: 1% !important;
     min-height: 95vh !important;
   }
+
 }
 
 

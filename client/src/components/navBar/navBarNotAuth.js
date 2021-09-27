@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 import {Link} from "react-router-dom";
-import {useSidenavInitCollapse} from "../../hooks/useSidenavInitCollapse";
+import {useInitSideNav} from "../../hooks/useInitNav";
 import {useSelector} from "react-redux"
 
 
 const NavBarNotAuth = () => {
 	const sideNavRef = useRef()
-	useSidenavInitCollapse(sideNavRef)
+	useInitSideNav(sideNavRef)
 	
 	const isLoading = useSelector(state => state.loginReducer.isAuth)
 	return (

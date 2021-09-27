@@ -3,6 +3,7 @@ import {registrationSagaWatcher} from "./registration/registrationSagaWatcher";
 import {loginSagaWatcher} from "./login/loginSagaWatcher"
 import {refreshSaga} from "./refreshData/refreshSaga"
 import {profilePageModalWatcher} from "./profilePageModal/profilePageModalWatcher"
+import {homePageWatcher} from "./homePageSaga/homePageWatcher"
 
 
 export function* rootSaga() {
@@ -11,6 +12,7 @@ export function* rootSaga() {
 		fork(loginSagaWatcher),
 		fork(registrationSagaWatcher),
 		fork(profilePageModalWatcher),
+		fork(homePageWatcher),
 	])
 }
 

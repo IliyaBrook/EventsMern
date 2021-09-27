@@ -1,6 +1,10 @@
 import {LOG_OUT} from "./loginTypes"
+import {push} from "react-router-redux"
 
 export const logoutAction = () => {
-	localStorage.removeItem('userData')
-	return dispatch => dispatch({type: LOG_OUT})
+	return dispatch => {
+		localStorage.removeItem('userData')
+		dispatch({type: LOG_OUT})
+		return dispatch(push('/'))
+	}
 }

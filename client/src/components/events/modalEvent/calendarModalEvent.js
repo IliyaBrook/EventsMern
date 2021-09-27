@@ -5,7 +5,7 @@ import {deleteEvent, deleteSubscriptionAction, subscribeEventAction} from "../..
 import {CalendarModalStyled} from "./CalendarModalStyled";
 
 
-const CalendarModalEvent = ({props}) => {
+const CalendarModalEvent = (props) => {
 	const dispatch = useDispatch()
 	const {calendarModalRef} = props
 	const {calendarModal, events} = useSelector(state => state.eventReducer)

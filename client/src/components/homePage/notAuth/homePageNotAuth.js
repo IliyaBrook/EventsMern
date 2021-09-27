@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import Carousel from '../styled/carousel'
+import Carousel from '../../styled/carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
-import './homePage.scss'
+import '../homePage.scss'
 import {useDispatch} from 'react-redux'
 import {push} from 'react-router-redux'
 
@@ -52,9 +52,22 @@ const HomePageNotAuth = () => {
 							<div className='notRegText white-text'>
 								<div className="flow-text text-center">
 									<p>You are welcome to take part in any event</p>
-									<p>you can find here in our virtual Social City</p>
-									<p> Enjoy the variety of possibilities to have fun</p>
-									<p>See you soon!</p>
+									<p>you can find here in our virtual Social City!</p>
+									<p className="p-2">See you soon!</p>
+									
+									<div className="homePageAdminUserProviderWrapper">
+										<div className="userWrapper">
+											<h6>Admin user:
+												<span> admin@gmail.com</span>
+											</h6>
+										</div>
+										<div className="passwordWrapper">
+											<h6>Password:
+												<span>123456</span>
+											</h6>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 						</div>

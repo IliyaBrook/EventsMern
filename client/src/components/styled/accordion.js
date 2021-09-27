@@ -28,7 +28,8 @@ export const AccordionDropDown = (props) => {
 					textAlign:'justify',
 					display: 'flex',
 					justifyContent:props.headerJustify ||'start',
-					alignItems:props.headerAlign || 'center'
+					alignItems:props.headerAlign || 'center',
+					fontSize:props.headerSize || '100%',
 				}}>
 					{props.header}
 				</Accordion.Toggle>

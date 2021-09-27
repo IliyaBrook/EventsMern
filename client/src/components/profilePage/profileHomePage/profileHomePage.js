@@ -1,11 +1,13 @@
 import React, {useMemo} from 'react'
 import './profileHomePage.scss'
-import {useSelector} from "react-redux"
-import {Button, Card} from "react-bootstrap"
+import {useDispatch, useSelector} from "react-redux"
+import {Button, Card, ListGroup} from "react-bootstrap"
+import {AccordionDropDown} from "../../styled/accordion"
+import {deleteSubscriptionAction} from "../../../redux/events/eventsAction"
 
 
 const ProfileHomePage = () => {
-	
+	const dispatch = useDispatch()
 	const {eventReducer: {events}, loginReducer: {email}} = useSelector(state => state)
 	
 	const userEvents = useMemo(() => {
@@ -15,42 +17,89 @@ const ProfileHomePage = () => {
 	}, [events])
 	
 	
-	
-	const renderEvent = () => {
+	const modalHomeContent = () => {
+		if (userEvents.length > 0) {
+			return userEvents.map((event, index) => {
+				return (
+					<div className="profileHomeWrapper" key={index}>
+						<div className="profileHomeContentWrapper">
+							<div className="profileHomeEventsWrapper">
+								<Card>
+									<Card.Header as="h5">
+										Event Name:
+										<p>
+											{event.eventName}
+										</p>
+									</Card.Header>
+									<Card.Body>
+										<AccordionDropDown header="Event time"
+										                   toggleHeight="3rem"
+										                   wrapMargin="3% 0 0 0"
+										                   headerSize="110%"
+										>
+											<ListGroup>
+												<ListGroup.Item>
+													<p>Start date:
+														<span>{event.startDate}</span>
+													</p>
+												</ListGroup.Item>
+												<ListGroup.Item>
+													<p>End Date:
+														<span>{event.endDate}</span>
+													</p>
+												</ListGroup.Item>
+												<ListGroup.Item>
+													<p>Start Time:
+														<span>{event.startTime}</span>
+													</p>
+												</ListGroup.Item>
+												<ListGroup.Item>
+													<p>End Time:
+														<span>
+															{event.endTime}
+														</span>
+													</p>
+												</ListGroup.Item>
+											</ListGroup>
+										</AccordionDropDown>
+										
+										<AccordionDropDown
+											header="Event description"
+											toggleHeight="3rem"
+											wrapMargin="3% 0 0 0"
+											headerSize="110%"
+										>
+											<Card.Text>
+												{event.eventDescription}
+											</Card.Text>
+										</AccordionDropDown>
+										<Button onClick={() =>
+											dispatch(deleteSubscriptionAction(email, event._id))}>Delete
+											subscription</Button>
+									</Card.Body>
+								</Card>
+							</div>
+						</div>
+					</div>
+				)
+			})
+		}
 		return (
 			<div className="profileHomeWrapper">
 				<div className="profileHomeHeaderWrapper">
-					<p>Your event subscriptions:</p>
+					<p className="profileHomeParagraph">Your event subscriptions:</p>
 				</div>
-				{
-					userEvents.map((event, index) => {
-						return (
-							<div className="profileHomeContentWrapper" key={index}>
-								<div className="profileHomeEventsWrapper">
-									<Card>
-										<Card.Header as="h5">{`Event Name: `}</Card.Header>
-										<Card.Body>
-											<Card.Title>Special title treatment</Card.Title>
-											<Card.Text>
-												With supporting text below as a natural lead-in to additional content.
-											</Card.Text>
-											<Button>Delete subscription</Button>
-										</Card.Body>
-									</Card>
-								</div>
-							</div>
-						)
-					})
-				}
+				<div className="profilePageNoSubscriptions">
+					<h2>You have no subscriptions</h2>
+				</div>
 			</div>
 		)
 	}
-	
-	
 	return (
-		<>
-			{renderEvent()}
-		</>
+		<div className="profileHomeHeaderWrapper">
+			<p className="profileHomeParagraph">Your event subscriptions:</p>
+			{modalHomeContent()}
+		</div>
 	)
 }
 

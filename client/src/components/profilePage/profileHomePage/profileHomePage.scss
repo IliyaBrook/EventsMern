@@ -1,42 +1,105 @@
-.profileHomeWrapper{
-  width: 100%;
-  height: 100%;
-  .profileHomeHeaderWrapper{
-    display: flex;
-    justify-content: center;
-    p{
-      margin-top: 4%;
+.profileHomeHeaderWrapper {
+  justify-content: center;
+  font-size: 140%;
+  .profileHomeParagraph {
+    text-align: center;
+    color: black;
+    margin: 0 0 5% 0;
+    border-bottom: 1px solid black;
+    height: 1.5rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    line-height: 0.5rem;
+  }
+}
+@media (max-width:400px) {
+  .profileHomeHeaderWrapper {
+    .profileHomeParagraph {
+      text-align: center;
       color: black;
+      margin: 0 0 5% 0;
       border-bottom: 1px solid black;
-      height: 1.5rem;
-      letter-spacing:0.1rem;
-      font-weight: 600;
-      line-height: 1.3rem;
+      height: 3.2rem;
+      letter-spacing: 0.1rem;
+      font-weight: 0;
+      line-height: 1.4rem;
     }
   }
-  .profileHomeContentWrapper{
+}
+
+.profileHomeWrapper {
+  .profileHomeContentWrapper {
+    margin-bottom:  5%;
     width: 100%;
-    display: flex;
+    padding: 0 3% 0 3%;
     justify-content: center;
-    .profileHomeEventsWrapper{
-      width: 90%;
-      display: flex;
-      .card{
-        .card-header{
+    .profileHomeEventsWrapper {
+
+      .card {
+        .card-header {
           color: black;
+          text-align: justify;
+          text-justify: inter-word;
+
+          p {
+            margin-top: 1%;
+            text-align: justify;
+            text-justify: inter-word;
+            color: #0a58ca;
+          }
         }
-        .card-body{
-          .card-title{
+
+        .list-group-item {
+          padding: 0 !important;
+          p{
+            font-weight: 500;
+            letter-spacing:0.4px;
+            font-size: 120%;
+            padding: 0 0 0 3%;
+            margin:0;
+            span{
+              color: #0a58ca;
+              margin-left:2%;
+              font-size: 120%;
+            }
+          }
+        }
+
+        .card-body {
+          .card-title {
             color: black;
           }
-          .card-text{
+
+          .card-text {
             color: black;
           }
-          .btn{
+
+          .btn {
             background-color: rgb(255, 83, 71);
           }
+        }
+        .card-text{
+          line-height: 2rem;
+          font-size: 120%;
+          letter-spacing: 0.2px;
+          font-weight: 500;
         }
       }
     }
   }
+  .profilePageNoSubscriptions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2{
+      margin-top:5%;
+      line-height: 5.5rem;
+      letter-spacing: 0.2rem;
+      text-align: center;
+      display: inline;
+      color: #26a69a;
+    }
+  }
 }
+
+

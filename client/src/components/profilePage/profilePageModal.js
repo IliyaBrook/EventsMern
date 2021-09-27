@@ -13,53 +13,60 @@ import {
 	CLICK_RENDER_USERS
 } from "../../redux/profilePage/admin/userManagment/userManagmentTypes"
 import ProfileHomePage from "./profileHomePage/profileHomePage"
+import UserProfilePage from "./user/userProfilePage"
 
 
 const ProfilePageModal = () => {
+	
 	const userName = useSelector(state => state.loginReducer.name)
 	const componentClicked = useSelector(state => state.profileModalReducer.renderComponentState.component)
 	const role = useSelector(state => state.loginReducer.role)
 	const dispatch = useDispatch()
-	const adminNavBar = () => {
-		if (role === 'admin') {
-			return (
-				<div className="adminNavWrapper">
-					<div className="adminNavUserNameWrapper">
-						<div>
-							<p className="form-label" onClick={() => {
-								dispatch({type: CLICK_RENDER_HOME_PAGE})
-							}}>
-								{userName}
-							</p>
+	const renderProfileByRole = () => {
+		switch (role) {
+			case 'admin':
+				return (
+					<div>
+						<div className="adminNavWrapper">
+							<div className="adminNavButtonsWrapper">
+								<Nav fill variant="tabs"
+								     activeKey={componentClicked}
+								>
+									<Nav.Item>
+										<Nav.Link onClick={() => {
+											dispatch({type: CLICK_RENDER_HOME_PAGE})
+										}} eventKey="profileHome">{userName.toUpperCase()}</Nav.Link>
+									</Nav.Item>
+									
+									
+									<Nav.Item>
+										<Nav.Link onClick={() => {
+											dispatch({type: CLICK_RENDER_USERS})
+										}} eventKey="getUsers">Users</Nav.Link>
+									</Nav.Item>
+									
+									<Nav.Item>
+										<Nav.Link onClick={() => {
+											dispatch({type: CLICK_RENDER_EVENTS})
+										}} eventKey="getEvents">Events</Nav.Link>
+									</Nav.Item>
+									
+									<Nav.Item>
+										<Nav.Link onClick={() => {
+											dispatch({type: CLICK_RENDER_CREATE_EVENT})
+										}} eventKey="addEvents">Add event</Nav.Link>
+									</Nav.Item>
+								</Nav>
+							</div>
 						</div>
+						{renderContent()}
 					</div>
-					<div className="adminNavButtonsWrapper">
-						<Nav fill variant="tabs"
-						     activeKey={componentClicked}
-						>
-							<Nav.Item>
-								<Nav.Link onClick={() => {
-									dispatch({type: CLICK_RENDER_USERS})
-								}} eventKey="getUsers">Users</Nav.Link>
-							</Nav.Item>
-							
-							<Nav.Item>
-								<Nav.Link onClick={() => {
-									dispatch({type: CLICK_RENDER_EVENTS})
-								}} eventKey="getEvents">Events</Nav.Link>
-							</Nav.Item>
-							
-							<Nav.Item>
-								<Nav.Link onClick={() => {
-									dispatch({type: CLICK_RENDER_CREATE_EVENT})
-								}} eventKey="addEvents">Add event</Nav.Link>
-							</Nav.Item>
-						</Nav>
-					</div>
-				</div>
-			)
+				)
+			case 'user':
+				return <UserProfilePage/>
 		}
 	}
+	
 	const {
 		profileModalReducer: {
 			loadings: {
@@ -88,12 +95,9 @@ const ProfilePageModal = () => {
 	
 	return (
 		<>
-			<div id="modal1" className="modal modal-fixed-footer">
-				<div className="modal-content adminModal">
-					{adminNavBar()}
-					<div>
-						{renderContent()}
-					</div>
+			<div id="modalAuthNavBar" className="modal modal-fixed-footer">
+				<div className="modal-content">
+					{renderProfileByRole()}
 				</div>
 				<div className="modal-footer">
 					<button className="btn modal-close">Close</button>

@@ -3,7 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import ProfilePageModal from "../profilePage/profilePageModal";
 import {connect} from 'react-redux'
 import {logoutAction} from '../../redux/login/loginActions'
-import {useSidenavInitCollapse} from "../../hooks/useSidenavInitCollapse";
+import {useInitSideNav} from "../../hooks/useInitNav";
 
 const NavBarAuth = ({userData, logoutAction}) => {
 	const history = useHistory()
@@ -14,14 +14,9 @@ const NavBarAuth = ({userData, logoutAction}) => {
 		window.M.Dropdown.init(dropDownProfile.current)
 		const modalElem = document.querySelectorAll('.modal')
 		window.M.Modal.init(modalElem)
+		
 	}, [])
-	useSidenavInitCollapse(sideNavTrigger)
-	
-	const logOut = () => {
-		logoutAction()
-		history.push('/')
-		localStorage.clear()
-	}
+	useInitSideNav(sideNavTrigger)
 	
 	
 	return (
@@ -41,7 +36,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 						</Link>
 					</div>
 					
-					<a data-target="mobile-nav" className="sidenav-trigger "><i
+					<a data-target="mobile-nav" className="sidenav-trigger"><i
 						className="material-icons pointer-event" style={{cursor: 'pointer'}}>menu</i>
 					</a>
 					<ul className="right hide-on-med-and-down">
@@ -61,10 +56,10 @@ const NavBarAuth = ({userData, logoutAction}) => {
 					<ul id='dropdown1' className='dropdown-content'>
 						<li>
 							<a className="waves-effect waves-light modal-trigger"
-							   data-target="modal1">Profile</a>
+							   data-target="modalAuthNavBar">Profile</a>
 						</li>
 						<li>
-							<a className="red-text" onClick={logOut}>Logout</a>
+							<a className="red-text" onClick={() => logoutAction()}>Logout</a>
 						</li>
 					</ul>
 				</div>
@@ -74,7 +69,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 				<li>
 					<div className="ml-2">
 						<button className="btn-flat modal-trigger"
-						        data-target="modal1">Profile
+						        data-target="modalAuthNavBar">Profile
 						</button>
 					</div>
 					
@@ -87,9 +82,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 					
 					
 					<div className="ml-2">
-						<button className="btn-flat"
-						        onClick={logOut}>Logout
-						</button>
+						<button className="btn-flat" onClick={() => logoutAction()}>Logout</button>
 					</div>
 				</li>
 			</ul>
