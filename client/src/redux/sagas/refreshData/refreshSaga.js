@@ -1,4 +1,4 @@
-import {call, fork, put} from "redux-saga/effects"
+import {call, fork, put, takeEvery} from "redux-saga/effects"
 import {SET_LOGIN_DATA} from "../../login/loginTypes"
 import {logoutAction} from "../../login/loginActions"
 import {windowSizeAction} from "../../tools/windowSizeReducer"
@@ -10,7 +10,7 @@ import {socketRootSaga} from "../socket/socketRootSaga"
 
 export function* refreshSaga() {
 	yield put(windowSizeAction())
-	yield call(requestDataWorker)
+	yield takeEvery('ENTER_PAGE',requestDataWorker)
 }
 
 function* requestDataWorker() {
