@@ -16,7 +16,7 @@ export const createEventSubmitAction = (clearInputFunc) => {
 			return window.M.toast({html: res.message})
 		} else {
 			clearInputFunc()
-			dispatch({type:CLEAR_ALL_ADD_EVENT_INPUTS})
+			dispatch({type: CLEAR_ALL_ADD_EVENT_INPUTS})
 			return window.M.toast({html: 'Event created successfully'})
 		}
 		

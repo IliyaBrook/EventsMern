@@ -23,11 +23,6 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 		pickerEventHandler(window.M.Datepicker, startDateRef, getStartDateHandler)
 		pickerEventHandler(window.M.Datepicker, endDateRef, getEndDateHandler)
 		
-		// const inputs = document.querySelectorAll('input')
-		// inputs.forEach(input => {
-		// 	input.readOnly = false
-		// })
-		
 		window.M.Timepicker.init(startTimeRef.current, {
 			container: 'body',
 			showClearBtn: true,

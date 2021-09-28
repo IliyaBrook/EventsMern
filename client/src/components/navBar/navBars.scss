@@ -1,4 +1,5 @@
 .nav-wrapper {
+
   position: fixed;
   a:hover {
     text-decoration: none !important;
@@ -33,5 +34,10 @@ i {
   color: RGBA(255, 255, 255, 0.85);
   .logoHeader {
     text-shadow: -3px 4px 3px black;
+  }
+}
+@media (min-width:993px){
+  .nav-wrapper{
+    padding:0 2% 0 2% !important;
   }
 }

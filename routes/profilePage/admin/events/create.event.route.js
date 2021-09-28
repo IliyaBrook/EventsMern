@@ -12,6 +12,7 @@ const inputEventMiddlewareValidator = [
 	body('endDate', 'Enter end date').exists({checkFalsy: true}),
 	body('startTime', 'Enter start Time').exists({checkFalsy: true}),
 	body('endTime', 'Enter end Time').exists({checkFalsy: true}),
+	body('freeSpots', 'Enter valid spots number').custom(value => value > 0),
 ]
 
 module.exports = router.post('/eventsManagment', isAdmin, inputEventMiddlewareValidator, async (req, res) => {
