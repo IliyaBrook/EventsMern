@@ -15,26 +15,21 @@ import LoginPage from "./components/loginPage/loginPage"
 import HomePageNotAuth from "./components/homePage/notAuth/homePageNotAuth"
 
 export const App = () => {
-	
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const resizeWidth = useSelector(state => state.windowSizeReducer.width)
-	
 	
 	useEffect(() => {
-		const windowSize = document.body.clientWidth
 		const htmlSelector = document.querySelector('html')
-		if (location.pathname === '/' && windowSize < 670) {
+		if (location.pathname === '/') {
 			document.body.style.overflow = 'hidden'
 			htmlSelector.style.overflow = 'hidden'
 		} else {
 			document.body.style.overflow = 'visible'
 			htmlSelector.style.overflow = 'visible'
 		}
-	}, [resizeWidth, location.pathname])
+	}, [location.pathname])
 	
 	useEffect(() => {
-		dispatch({type: 'ENTER_PAGE'})
 		if (location.pathname !== '/') {
 			dispatch(push(location.pathname))
 		}
@@ -44,7 +39,6 @@ export const App = () => {
 		loginReducer: {loading: loginLoading, isAuth},
 		registrationReducer: {loading: registrationLoading},
 		homePageReducer: {loading: homePageLoading},
-		eventReducer: {events}
 	} = useSelector(state => state)
 	
 	

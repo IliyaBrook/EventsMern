@@ -76,6 +76,7 @@ export const loginReducer = (state = initialStateLogin, action) => {
 				}
 			}
 		case SET_SOCKET_CONNECTED_AND_ID:
+			console.log(action.payload)
 			return {...state, ...action.payload}
 		
 		case LOGIN_LOADING_TRUE:

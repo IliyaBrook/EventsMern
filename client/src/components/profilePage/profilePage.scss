@@ -47,39 +47,7 @@
   }
 }
 
-//users Render styles
-.usersWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 
-  .userWrapper {
-    padding: 5%;
-    margin: 2% 0 2% 0;
-
-    .userDetailsEmailWrapper {
-      .email {
-        color: #2196F3;
-      }
-
-      .emailDetails {
-        color: black;
-        margin-left: 5px;
-      }
-    }
-
-    .userDetailsNameWrapper {
-      .name {
-        color: #2196F3;
-      }
-
-      .nameDetails {
-        color: black;
-        margin-left: 5px;
-      }
-    }
-  }
-}
 
 
 .modal.modal-fixed-footer {
@@ -124,4 +92,10 @@ option {
   padding: 0 !important;
   font-size: 15px !important;
   line-height: 180%;
+}
+
+@media (max-width:450px) {
+  .modalAuthNavBar, .modal.modal-fixed-footer{
+    width:95% !important;
+  }
 }

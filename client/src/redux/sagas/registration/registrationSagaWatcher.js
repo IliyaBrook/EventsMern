@@ -22,7 +22,7 @@ function* SagaWorkerFetchRegistrationData() {
 			yield put({type: REGISTRATION_LOADING_FALSE})
 			return yield window.M.toast({html: res.data.registrationMessage})
 		}
-		yield window.M.toast({html: `Welcome, ${name}! ; Thank you, now please authorize!`})
+		yield window.M.toast({html: `Welcome ${name}, now please authorize!`})
 		yield put({type:CLEAR_REGISTRATION_ERRORS})
 		yield put(push('/login'))
 		yield put({type: REGISTRATION_LOADING_FALSE})

@@ -42,14 +42,3 @@ export const AccordionDropDown = (props) => {
 		</Accordion>
 	)
 }
-
-// <Accordion.Item eventKey="0">
-// 	<Accordion.Header>
-// 		{props.header}
-// 	</Accordion.Header>
-// 	<Accordion.Body>
-// 		<ListGroup>
-// 			<StyledAccordion {...props}/>
-// 		</ListGroup>
-// 	</Accordion.Body>
-// </Accordion.Item>

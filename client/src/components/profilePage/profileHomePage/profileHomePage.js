@@ -33,9 +33,9 @@ const ProfileHomePage = () => {
 									</Card.Header>
 									<Card.Body>
 										<AccordionDropDown header="Event time"
-										                   toggleHeight="3rem"
+										                   toggleHeight="2rem"
 										                   wrapMargin="3% 0 0 0"
-										                   headerSize="110%"
+										                   headerSize="90%"
 										>
 											<ListGroup>
 												<ListGroup.Item>
@@ -65,9 +65,9 @@ const ProfileHomePage = () => {
 										
 										<AccordionDropDown
 											header="Event description"
-											toggleHeight="3rem"
+											toggleHeight="2rem"
 											wrapMargin="3% 0 0 0"
-											headerSize="110%"
+											headerSize="90%"
 										>
 											<Card.Text>
 												{event.eventDescription}
@@ -86,9 +86,6 @@ const ProfileHomePage = () => {
 		}
 		return (
 			<div className="profileHomeWrapper">
-				<div className="profileHomeHeaderWrapper">
-					<p className="profileHomeParagraph">Your event subscriptions:</p>
-				</div>
 				<div className="profilePageNoSubscriptions">
 					<h2>You have no subscriptions</h2>
 				</div>
