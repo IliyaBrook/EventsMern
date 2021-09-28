@@ -37,7 +37,9 @@ const AllUsers = () => {
 														{event.eventName}
 													</p>
 													<div>
-														<Button onClick={() => dispatch(deleteSubscriptionAction(user.email, event._id))}>Unsubscribe user</Button>
+														<Button
+															onClick={() => dispatch(deleteSubscriptionAction(user.email, event._id))}>Unsubscribe
+															user</Button>
 													</div>
 												</ListGroup.Item>
 											</div>
@@ -82,9 +84,7 @@ const AllUsers = () => {
 					<div className="shadow rounded userWrapper">
 						<div className="row">
 							<div className="topBtnsWrapper">
-								<div className="col s6 d-flex justify-content-center">
-									<Button size="small" className="ml-4">User events</Button>
-								</div>
+								<Button size="small" className="ml-4">User events</Button>
 							</div>
 						</div>
 						<div className="userDetailsEmailWrapper">
