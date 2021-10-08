@@ -3,7 +3,6 @@ import {Button, Form} from "react-bootstrap"
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {createEventSubmitAction} from "../../../../redux/events/eventsAction"
-import {useFormatDate} from "../../../../hooks/useFormatDate"
 import {EVENT_INPUT_FIELDS} from "../../../../redux/events/eventsTypes";
 import './addEvent.scss'
 
@@ -20,8 +19,18 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 	
 	useEffect(() => {
 		window.M.updateTextFields()
-		pickerEventHandler(window.M.Datepicker, startDateRef, getStartDateHandler)
-		pickerEventHandler(window.M.Datepicker, endDateRef, getEndDateHandler)
+		
+		window.M.Datepicker.init(startDateRef.current, {
+			container: 'body',
+			showClearBtn: true,
+			format: 'yyyy-mm-dd'
+		})
+		
+		window.M.Datepicker.init(endDateRef.current, {
+			container: 'body',
+			showClearBtn: true,
+			format: 'yyyy-mm-dd'
+		})
 		
 		window.M.Timepicker.init(startTimeRef.current, {
 			container: 'body',
@@ -32,6 +41,14 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 			showClearBtn: true,
 		})
 		
+		const startDate = startDateRef.current.addEventListener('change', event => {
+			return dispatchInputs({startDate: event.target.value})
+		})
+		
+		const endDate = endDateRef.current.addEventListener('change', event => {
+			return dispatchInputs({endDate: event.target.value})
+		})
+		
 		const startTimeId = startTimeRef.current.addEventListener('change', event => {
 			const startTime = `${event.target.M_Timepicker.time} ${event.target.M_Timepicker.amOrPm}`
 			dispatchInputs({startTime})
@@ -40,31 +57,16 @@ const AddEvent = ({createEventSubmitAction, dispatchInputs, inputsState}) => {
 			const endTime = `${event.target.M_Timepicker.time} ${event.target.M_Timepicker.amOrPm}`
 			dispatchInputs({endTime})
 		})
+		
 		return () => {
+			removeEventListener('change', startDate)
+			removeEventListener('change', endDate)
 			removeEventListener('change', startTimeId)
 			removeEventListener('change', endTimeId)
 		}
-		
 	}, [])
 	
 	
-	const getStartDateHandler = (event) => {
-		const startDate = useFormatDate(event)
-		return dispatchInputs({startDate})
-	}
-	
-	const getEndDateHandler = (event) => {
-		const endDate = useFormatDate(event)
-		return dispatchInputs({endDate})
-	}
-	
-	const pickerEventHandler = (materializePicker, ref, onSelectCallback) => {
-		return materializePicker.init(ref.current, {
-			container: 'body',
-			onSelect: onSelectCallback,
-			showClearBtn: true,
-		})
-	}
 	
 	const inputHandler = (event) => {
 		return dispatchInputs({[event.target.name]: event.target.value})

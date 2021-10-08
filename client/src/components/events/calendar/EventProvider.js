@@ -14,6 +14,7 @@ const EventProvider = () => {
 			end,
 			color: event.color,
 			id: event._id,
+			category:event.categories
 		}
 	}
 	if (categoriesFilter) {

@@ -1,7 +1,9 @@
+import React from "react"
 import './eventCalendar.scss'
 import {OverlayTrigger, Popover} from "react-bootstrap"
 
-export const customEvents = (info) => {
+const CustomEvents = (info) => {
+	
 	const widthScreen = document.body.clientWidth
 	if (widthScreen < 500) {
 		return (
@@ -12,6 +14,7 @@ export const customEvents = (info) => {
 	}
 	
 	const CustomPopover = (props) => {
+		
 		return (
 			<Popover id='myTooltip'  {...props}>
 				<Popover.Title>{info.event.title}</Popover.Title>
@@ -21,6 +24,9 @@ export const customEvents = (info) => {
 			</Popover>
 		)
 	}
+	
+	
+	
 	return (
 		<OverlayTrigger overlay={CustomPopover} placement="auto">
 			<div className="fc-content cursorPointer" id={info.event.id}>
@@ -29,3 +35,5 @@ export const customEvents = (info) => {
 		</OverlayTrigger>
 	)
 }
+
+export default CustomEvents

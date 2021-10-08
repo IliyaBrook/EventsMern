@@ -1,7 +1,7 @@
 import React, {useMemo} from "react"
 import FullCalendar from "@fullcalendar/react"
 import EventProvider from "./EventProvider"
-import {customEvents} from "./customEvents"
+import CustomEvents from "./customEvents"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
 
@@ -20,7 +20,7 @@ const RenderCalendar = ({calendarRef, eventClick, events}) => {
 				events={EventProvider()}
 				height={600}
 				eventDisplay={'block'}
-				eventContent={customEvents}
+				eventContent={CustomEvents}
 				eventClick={eventClick}
 				displayEventEnd={false}
 				displayEventTime={true}

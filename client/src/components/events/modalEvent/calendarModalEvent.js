@@ -34,7 +34,7 @@ const CalendarModalEvent = (props) => {
 			<i className="material-icons mt-1">event_busy</i>
 		</div>
 	)
-
+	
 	
 	const setSubscribeBtnText = () => {
 		switch (true) {
@@ -70,10 +70,18 @@ const CalendarModalEvent = (props) => {
 							}>Unsubscribe</Button>
 						}
 					</div>
+					
 					{isEventExpired}
 				</div>
 				<div className="modal-content calendarModalContent">
-					
+					<span>
+						<p style={{
+							borderBottom: '1px solid red', width: 'fit-content',
+							padding:'3px',fontWeight: 600
+						}}>
+							{event?.categories}
+						</p>
+					</span>
 					<div className="eventInfoWrapper">
 						<div className="border-primary">
 							<i className="material-icons blue-text">access_time</i>

@@ -1,8 +1,10 @@
 import React from 'react'
 import {Form} from "react-bootstrap"
 import {CATEGORIES_FILTER} from "../../../redux/events/eventsTypes"
+import {useDispatch} from "react-redux"
 
 const CalendarCategoriesFilter = () => {
+	const dispatch = useDispatch()
 	return (
 		<div className="d-flex w-100 justify-content-end justifyFilterWrapper">
 			<Form.Group className="p-3 filterWrapper">
