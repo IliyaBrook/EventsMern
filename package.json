@@ -7,7 +7,7 @@
     "start": "node app.js",
     "start-prod": "set NODE_ENV=production&& nodemon app.js",
     "build": "npm run build --prefix client",
-    "heroku-postbuild": "npm install && cd client && npm install && npm run build",
+    "heroku-postbuild": "npm install && cd client && npm install --legacy-peer-deps && npm run build",
     "server-dev": "nodemon app.js",
     "start-client": "cd client && npm run start",
     "dev": "concurrently \"npm run server-dev\"   \"npm run start-client\" "
