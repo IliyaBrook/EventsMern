@@ -3,15 +3,23 @@
 .notAuthBorderWrapper {
   display: flex;
   justify-content: center;
-
+  z-index: 1200;
+  position: absolute;
+  top: 15vh;
+  width: 100%;
   .notAuthBorder {
     width: 100%;
+    margin: 0 10px 0 10px;
+    padding: 3%;
+    background-color: rgba(2, 2, 2, 0.7);
     .buttonsWrapper{
       display: flex;
       justify-content: space-between;
       .registrationWrapper{
 
         .regHeader {
+          display: flex;
+          justify-content: center;
           border-radius: 2px;
           padding: 8%;
           width: 12rem;
@@ -36,6 +44,26 @@
     letter-spacing: 0.1rem;
     b{
       color: #26a69a;
+    }
+  }
+  .homePageAdminUserProviderWrapper{
+    .userWrapper{
+      h6{
+        span{
+          margin-left: 1%;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          font-family: sans, serif; color: yellow;
+        }
+      }
+    }
+    .passwordWrapper{
+      h6{
+        span{
+          margin-left: 1%;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          font-family: sans, serif; color: yellow;
+        }
+      }
     }
   }
 }
