@@ -1,0 +1,15 @@
+.googleAuth {
+  opacity: 1 !important;
+  width: max-content;
+  white-space: nowrap;
+}
+
+
+@media (max-width: 780px) {
+  .googleAuth {
+    width: 20rem;
+    height: 4rem;
+    display: flex !important;
+    justify-content: center !important;
+  }
+}

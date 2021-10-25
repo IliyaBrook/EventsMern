@@ -5,11 +5,13 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const router = Router()
 const jwt = require('jsonwebtoken')
+
 const loginMiddleWareValidator = [
 	body('email', 'Log in filed cannot be empty!').isLength({min: 1}),
 	body('email', 'Please enter correct email').isEmail(),
 	body('password', 'Password filed cannot be empty!').isLength({min: 1}),
 ]
+
 module.exports = router.post('/login', loginMiddleWareValidator, async (req, res) => {
 	try {
 		const errors = validationResult(req).array()

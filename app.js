@@ -26,9 +26,10 @@ app.use('/events', require('./routes/profilePage/admin/events/delete.event.route
 app.use('/events', require('./routes/events/subscribe.route'))
 app.use('/events', require('./routes/events/deleteSubscription.route'))
 app.use('/messages', require('./routes/messages/messages.route'))
+app.use('/', require('./routes/authApi/googleFacebookAuth'))
 
 
-if (process.env.USERNAME !== 'brook') {
+if (process.env.USERNAME !== 'Iliya') {
 	app.use('/', express.static(path.join(__dirname, 'client', 'build')))
 	app.get('*', (req, res) => {
 		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
@@ -39,12 +40,12 @@ const PORT = process.env.PORT || config.get('port')
 
 async function start() {
 	try {
-		await mongoose.connect(process.env.MONGODB_URI || config.get('mongoUri'))
-		
+        await mongoose.connect(process.env.MONGODB_URI || config.get('mongoUri'))
+
 		server.listen(PORT, () => {
 			console.log('App started on port: ', PORT)
 		})
-		
+
 	} catch (e) {
 		console.log('Server mongo error', e.message)
 		process.exit(1)
