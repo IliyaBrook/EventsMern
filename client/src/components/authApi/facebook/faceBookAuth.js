@@ -15,6 +15,7 @@ const FaceBookAuth = () => {
 
     return (
         <FacebookLogin
+            disableMobileRedirect={true}
             appId={facebookConfKey}
             autoLoad={false}
             fields="name,email,picture"

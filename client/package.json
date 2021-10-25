@@ -6,6 +6,7 @@
     "@fullcalendar/daygrid": "^5.9.0",
     "@fullcalendar/interaction": "^5.9.0",
     "@fullcalendar/react": "^5.9.0",
+    "@types/react-facebook-login": "^4.1.4",
     "bootstrap-select": "^1.13.18",
     "date-fns": "^2.22.1",
     "fullcalendar": "^5.9.0",
