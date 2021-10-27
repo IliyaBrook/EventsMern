@@ -10,11 +10,14 @@ export default function GoogleAuth () {
     const dispatch = useDispatch()
 
     const responseGoogle = ({ profileObj }) => {
-        return dispatch(authApiAction(profileObj.email))
+        if (profileObj) {
+            return dispatch(authApiAction({email:profileObj.email, name:profileObj.name}))
+        }
     }
     return (
         <>
             <GoogleLogin
+                autoLoad={false}
                 className="googleAuth"
                 clientId={googleConfKey}
                 buttonText="LOGIN WITH GOOGLE"

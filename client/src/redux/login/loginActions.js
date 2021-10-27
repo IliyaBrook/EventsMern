@@ -9,15 +9,14 @@ export const logoutAction = () => {
 	}
 }
 
-export const authApiAction = (email ) => {
-
+export const authApiAction = (props) => {
 	return async dispatch => {
 		const response = await fetch('/authApi', {
 			method:'POST',
 			headers:{
 				'Content-Type': 'application/json'
 			},
-			body:JSON.stringify({email:email})
+			body:JSON.stringify(props)
 		})
 		const data = await response.json()
 		try {
@@ -26,7 +25,7 @@ export const authApiAction = (email ) => {
 			return dispatch({type:SET_LOGIN_DATA, payload:{email, name, role, token, isAuth: true }})
 		}catch (error){
 			console.log(error)
-			window.M.toast({html: JSON.stringify(data.error)})
+			window.M.toast({html: 'Server error'})
 		}
 	}
 }

@@ -20,7 +20,6 @@ export const getUsersAction = () => {
 export const deleteUserAction = (email) => {
 	return async (dispatch, getState) => {
 		const token = getState().loginReducer.token
-		const body = {email}
 		dispatch({type: DELETE_USER, email})
 		return useRequest('/profilePage/deleteUser', 'POST', body, token)
 	}

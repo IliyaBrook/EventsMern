@@ -8,8 +8,8 @@ import './facebook.scss'
 const FaceBookAuth = () => {
     const dispatch = useDispatch()
 
-    const responseFacebook = ({ email }) => {
-        return dispatch(authApiAction(email))
+    const responseFacebook = ({ email, name }) => {
+        return dispatch(authApiAction({email, name}))
     }
 
 

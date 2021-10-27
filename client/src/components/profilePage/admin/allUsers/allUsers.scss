@@ -31,8 +31,10 @@
     margin: 2% 0 2% 0;
     width: 70%;
     .topBtnsWrapper{
+      padding: 2%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      margin-bottom: 4%;
     }
 
     .userDetailsEmailWrapper {

@@ -6,21 +6,26 @@ const config = require('config')
 
 module.exports = router.post('/authApi', async (req, res) => {
     try {
-        const userEmail = req.body.email
-
-        const {email, name, role } = await User.findOne({email: userEmail})
-
+        const {email, name} = req.body
+        const findUser = await User.findOne({ email: email })
+        console.log(findUser)
         const token = await jwt.sign
         (
             {email, name }
             , config.get('jwtSecret'),
             {expiresIn: '24h'}
         )
+        if (!findUser) {
+            return res.status(200).json({
+                userData: { email, name, role:'user' }
+            })
+        }
 
         return res.status(200).json({
             userData: { email, name, token, role }
         })
     } catch (errors) {
+        console.log(errors)
         return res.status(400).json({error: errors})
     }
 })
