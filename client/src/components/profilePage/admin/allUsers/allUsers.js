@@ -83,7 +83,6 @@ const AllUsers = () => {
                 <div className='usersWrapper' key={index + 1}>
                     <div className="shadow rounded userWrapper">
                         <div className="topBtnsWrapper">
-                            <Button size="small" className="ml-4">User events</Button>
                             <Button size="small" className="btn red"
                                     onClick={() => dispatch(deleteUserAction(user.email))}
                             >Delete user</Button>
