@@ -8,7 +8,6 @@ module.exports = router.post('/authApi', async (req, res) => {
     try {
         const {email, name} = req.body
         const findUser = await User.findOne({ email: email })
-        console.log(findUser)
         const token = await jwt.sign
         (
             {email, name }
@@ -20,7 +19,7 @@ module.exports = router.post('/authApi', async (req, res) => {
                 userData: { email, name, role:'user' }
             })
         }
-
+        const { role } = findUser
         return res.status(200).json({
             userData: { email, name, token, role }
         })
