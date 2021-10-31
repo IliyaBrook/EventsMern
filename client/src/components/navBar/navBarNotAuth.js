@@ -9,7 +9,6 @@ const NavBarNotAuth = () => {
     const sideNavRef = useRef()
     useInitSideNav(sideNavRef)
 
-    // const isLoading = useSelector(state => state.loginReducer.isAuth)
     return (
         <div>
             <nav>

@@ -25,7 +25,6 @@ export default function GoogleAuth(props) {
     const dispatch = useDispatch()
 
     const responseGoogle = ({profileObj}) => {
-        console.log(profileObj)
         if (profileObj) {
             return dispatch(authApiAction({email: profileObj.email, name: profileObj.name}))
         }
