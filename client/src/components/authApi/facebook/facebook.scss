@@ -4,6 +4,14 @@
   letter-spacing: 0.5px!important;
 }
 
+.facebookContext{
+  color:rgba(59, 89, 152,1);
+  background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+  background-size: 50%;
+  background-position: 60% 0;
+  background-repeat: no-repeat;
+}
+
 
 @media (max-width: 780px) {
   .kep-login-facebook.metro{

@@ -1,1 +1,0 @@
-export const WINDOW_WIDTH = 'TOOLS/WINDOW_WIDTH'

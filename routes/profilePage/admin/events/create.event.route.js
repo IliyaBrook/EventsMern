@@ -15,7 +15,7 @@ const inputEventMiddlewareValidator = [
 	body('freeSpots', 'Enter valid spots number').custom(value => value > 0),
 ]
 
-module.exports = router.post('/eventsManagment', isAdmin, inputEventMiddlewareValidator, async (req, res) => {
+module.exports = router.post('/eventsManagement', isAdmin, inputEventMiddlewareValidator, async (req, res) => {
 	try {
 		const validatorErrors = validationResult(req).array()
 		if (validatorErrors.length !== 0) {

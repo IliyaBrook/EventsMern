@@ -25,7 +25,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 				<div className="nav-wrapper #607d8b blue-grey darken-3">
 					<ul className="left hide-on-med-and-down">
 						<li>
-							<button className="btn" onClick={() => history.push('/events')}>City Events</button>
+							<button className="btn" onClick={() => history.push('/')}>City Events</button>
 						</li>
 					</ul>
 					<div>
@@ -76,7 +76,7 @@ const NavBarAuth = ({userData, logoutAction}) => {
 					<div className="ml-2">
 						<button className="btn-flat"
 						        onClick={() =>
-							        history.push('/events')}>Event Board
+							        history.push('/')}>Event Board
 						</button>
 					</div>
 					

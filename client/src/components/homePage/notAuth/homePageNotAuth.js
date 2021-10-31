@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react'
-import Carousel from '../../styled/carousel'
-import "react-responsive-carousel/lib/styles/carousel.min.css"
+import React from 'react'
 import '../homePage.scss'
 import {useDispatch} from 'react-redux'
 import {push} from 'react-router-redux'
@@ -9,11 +7,6 @@ import GoogleAuth from "../../authApi/google/googleAuth"
 import FaceBookAuth from "../../authApi/facebook/faceBookAuth";
 
 const HomePageNotAuth = () => {
-
-    const [carouselReady, setCarouselReady] = useState(false)
-    useEffect(() => {
-        setCarouselReady(true)
-    }, [])
 
     const dispatch = useDispatch()
     const redirectEvent = (e) => {
@@ -27,7 +20,6 @@ const HomePageNotAuth = () => {
 
     return (
         <div>
-            {carouselReady ? <Carousel/> : <div/>}
             <div className="notAuthBorderWrapper">
                 <div className="section"/>
                 <div className="notAuthBorder rounded">

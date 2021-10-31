@@ -1,7 +1,6 @@
 import {call, fork, put} from "redux-saga/effects"
 import {SET_LOGIN_DATA} from "../../login/loginTypes"
 import {logoutAction} from "../../login/loginActions"
-import {windowSizeAction} from "../../tools/windowSizeReducer"
 import {REFRESH_EVENTS} from "../../events/eventsTypes"
 import {HOME_PAGE_LOADING_FALSE, HOME_PAGE_LOADING_TRUE} from "../../homePage/homePageReducerTypes"
 import {useRequestSaga} from "../use/useRequestSaga"
@@ -9,8 +8,8 @@ import {socketRootSaga} from "../socket/socketRootSaga"
 
 
 export function* refreshSaga() {
-	yield put(windowSizeAction())
 	yield call(requestDataWorker)
+	yield call(welcomeWinGuest)
 }
 
 function* requestDataWorker() {
@@ -33,4 +32,11 @@ function* requestDataWorker() {
 function* getEvents(token) {
 	const {data} = yield call(useRequestSaga, {url: '/refreshEvents', token: token})
 	yield put({type: REFRESH_EVENTS, payload: [...data]})
+}
+
+function* welcomeWinGuest() {
+	const authorized = yield localStorage.getItem('userData')
+	if (!authorized) {
+		yield put({type:SET_LOGIN_DATA,payload:{role:'guest'}})
+	}
 }

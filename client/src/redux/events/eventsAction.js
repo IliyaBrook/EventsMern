@@ -6,7 +6,7 @@ export const createEventSubmitAction = (clearInputFunc) => {
 	return async (dispatch, getState) => {
 		const token = getState().loginReducer.token
 		const body = getState().eventReducer.createEventInputsFields
-		const res = await useRequest('/profilePage/eventsManagment', 'POST', body, token)
+		const res = await useRequest('/profilePage/eventsManagement', 'POST', body, token)
 		if (res.Error) {
 			return res.message.forEach(elem => window.M.toast({html: elem.msg}))
 		}

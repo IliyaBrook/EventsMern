@@ -6,10 +6,12 @@ import moment from "moment";
 import RenderCalendar from "./renderCalendar"
 import CalendarCategoriesFilter from "./calendarCategoriesFilter"
 import CalendarModalEvent from "../modalEvent/calendarModalEvent"
+import GuestWelcomeModal from "../../guestWelcomeModal/guestWelcomeModal";
 
 const EventCalendar = () => {
 	const calendarRef = useRef()
 	const {events, categoriesFilter} = useSelector(state => state.eventReducer)
+	const {role} = useSelector(state => state.loginReducer)
 	const dispatch = useDispatch()
 	const calendarModalRef = useRef()
 	
@@ -31,6 +33,7 @@ const EventCalendar = () => {
 				events={events}
 				categoriesFilter={categoriesFilter}
 			/>
+			{role === 'guest' && <GuestWelcomeModal/>}
 			<CalendarModalEvent calendarModalRef={calendarModalRef}/>
 		</div>
 	)

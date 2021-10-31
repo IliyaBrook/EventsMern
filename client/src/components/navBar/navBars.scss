@@ -36,8 +36,67 @@ i {
     text-shadow: -3px 4px 3px black;
   }
 }
+
+.facebookGoogleButtonsWrapper{
+  height: 40rem;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  width: 100%;
+  margin-right: 3rem;
+  .facebookGoogleButtonsContent{
+    opacity: 1!important;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 1rem 0 1rem;
+    .facebookWrapper{
+      margin-left: 5px;
+      .kep-login-facebook.small{
+        border-radius: 2px;
+        height: 2.9rem !important;
+        box-shadow: -5px 2px 10px rgba(0, 0, 0 , 20%);
+        font-family: Roboto, sans-serif
+      }
+    }
+    .googleWrapper{
+      box-shadow: -4px 2px 10px rgba(0, 0, 0 , 20%);
+      border-radius: 2px;
+      margin-right: 5px;
+      div, button, span {
+        opacity: 1!important
+      }
+    }
+  }
+
+}
+
+
 @media (min-width:993px){
   .nav-wrapper{
     padding:0 2% 0 2% !important;
   }
+
+  .facebookGoogleButtonsWrapper {
+    height: 84%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+
+    .facebookGoogleButtonsContent {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 7px 0 7px;
+    }
+  }
+}
+@media (max-width: 476px) {
+  .logoHeader{
+    display: none;
+  }
+}
+.sidenav{
+  width: max-content!important;
 }

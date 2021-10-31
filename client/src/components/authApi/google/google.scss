@@ -13,3 +13,21 @@
     justify-content: center !important;
   }
 }
+
+.googleContext{
+
+  span{
+    margin: 0!important;
+    padding: 0!important;
+
+  }
+  div{
+    margin: 0!important;
+    padding: 0!important;
+    border: none;
+    transform: scale(1.3);
+  }
+  svg{
+    margin: 2px 2px;
+  }
+}

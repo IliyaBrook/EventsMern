@@ -1,16 +1,16 @@
 import {
-    ADD_SOCKET_ID,
-    CLEAR_ERRORS_EMAIL,
-    CLEAR_ERRORS_PASSWORD,
-    CLEAR_LOGIN_INPUTS,
-    CLEAR_LOGIN_STATE,
-    LOG_OUT,
-    LOGIN_LOADING_FALSE,
-    LOGIN_LOADING_TRUE,
-    SET_LOGIN_DATA,
-    SET_LOGIN_ERRORS,
-    SET_SOCKET_CONNECTED_AND_ID,
-    UPDATE_LOGIN_INPUTS
+	ADD_SOCKET_ID,
+	CLEAR_ERRORS_EMAIL,
+	CLEAR_ERRORS_PASSWORD,
+	CLEAR_LOGIN_INPUTS,
+	CLEAR_LOGIN_STATE,
+	LOG_OUT,
+	LOGIN_LOADING_FALSE,
+	LOGIN_LOADING_TRUE,
+	SET_LOGIN_DATA,
+	SET_LOGIN_ERRORS,
+	SET_SOCKET_CONNECTED_AND_ID,
+	UPDATE_LOGIN_INPUTS
 } from "./loginTypes"
 
 export const initialStateLogin = {
@@ -38,7 +38,6 @@ export const loginReducer = (state = initialStateLogin, action) => {
 		case ADD_SOCKET_ID:
 			return {...state, socketId: action.payload}
 		case SET_LOGIN_DATA:
-			console.log(action.payload)
 			return {
 				...state,
 				email: action.payload.email, name: action.payload.name,
