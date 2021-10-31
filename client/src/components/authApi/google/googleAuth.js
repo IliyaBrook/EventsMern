@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './google.scss'
 import {GoogleLogin} from 'react-google-login';
 import {googleConfKey} from '../../../config/keys.json'
@@ -7,20 +7,17 @@ import {authApiAction} from "../../../redux/login/loginActions";
 
 export default function GoogleAuth(props) {
 
-    useEffect(() => {
-        const gContext = document.querySelector('.googleContext')
-        if (gContext) {
-            const changeSize = ({size}) => {
-                return gContext.children[0].style.transform = `scale(${size})`
-            }
-            props = {
-                size:props.size,
-                buttonText: props.text || null,
-            }
-            changeSize({size:props.size})
+    const gContext = document.querySelector('.googleContext')
+    if (gContext) {
+        const changeSize = ({size}) => {
+            return gContext.children[0].style.transform = `scale(${size})`
         }
-
-    }, [props])
+        props = {
+            size: props.size,
+            buttonText: props.text || null,
+        }
+        changeSize({size: props.size})
+    }
 
     const dispatch = useDispatch()
 
