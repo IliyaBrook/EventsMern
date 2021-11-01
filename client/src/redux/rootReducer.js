@@ -5,10 +5,10 @@ import {routerReducer} from "react-router-redux"
 import {eventReducer} from "./events/eventReducer"
 import {profileModalReducer} from "./profilePage/admin/userManagment/profileModalReducer"
 import {socialReducer} from "./social/socialReducer"
-import {homePageReducer} from "./homePage/homePageReducer"
+import {modalsReducer} from "./modals/guestWelcomeModal";
 
 export const rootReducer = combineReducers({
-	loginReducer,registrationReducer,
+	loginReducer,registrationReducer,modalsReducer,
 	profileModalReducer,socialReducer, routing: routerReducer,
-	eventReducer,homePageReducer
+	eventReducer
 })

@@ -12,7 +12,6 @@ const AllEvents = () => {
 	const dispatch = useDispatch()
 	
 	const allEventsRender = () => {
-		
 		const deleteEventHandler = (e) => {
 			return dispatch(deleteEvent(e.target.id))
 		}

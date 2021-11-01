@@ -1,10 +1,10 @@
 import {call, fork, put, select, takeEvery} from "redux-saga/effects"
 import {
-	CLEAR_LOGIN_INPUTS,
-	LOGIN_FORM_VALID,
-	LOGIN_LOADING_FALSE,
-	LOGIN_LOADING_TRUE,
-	SET_LOGIN_DATA
+    CLEAR_LOGIN_INPUTS,
+    LOGIN_FORM_VALID,
+    LOGIN_LOADING_FALSE,
+    LOGIN_LOADING_TRUE,
+    SET_LOGIN_DATA
 } from "../../login/loginTypes"
 import {push} from "react-router-redux"
 import {socketRootSaga} from "../socket/socketRootSaga"

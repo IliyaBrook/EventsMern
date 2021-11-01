@@ -2,25 +2,36 @@ import React, {useEffect, useRef} from 'react'
 import './guestWelcomeModal.scss'
 import FaceBookAuth from "../authApi/facebook/faceBookAuth"
 import GoogleAuth from "../authApi/google/googleAuth"
+import {useDispatch, useSelector} from "react-redux";
+import {GUEST_WELCOME_MODAL_CLOSE} from "../../redux/modals/modalTypes";
 
 const GuestWelcomeModal = () => {
-
+    const {guestWelcomeModalOpen} = useSelector(state => state.modalsReducer)
+    const dispatch = useDispatch()
     const guestWelcomeModalRef = useRef()
 
     const handleClose = () => {
         const instance = window.M.Modal.init(guestWelcomeModalRef.current)
         instance.close()
+        dispatch({type:GUEST_WELCOME_MODAL_CLOSE})
     }
     useEffect(() => {
         const instance = window.M.Modal.init(guestWelcomeModalRef.current)
-        instance.open()
+        if (guestWelcomeModalOpen !== false) {
+            instance.open()
+        }
     }, [])
 
     return (
         <div className="modal" ref={guestWelcomeModalRef}>
             <div className="modalContentWrapper">
                 <div className="btnCloseWrapper">
-                    <button type="button" className="btn-close" aria-label="Close"/>
+                    <button
+                        onClick={handleClose}
+                        type="button"
+                        className="btn-close"
+                        aria-label="Close"
+                    />
                 </div>
                 <div className="headerWrapper">
                     <h4>WELCOME</h4>
@@ -43,7 +54,7 @@ const GuestWelcomeModal = () => {
                     </div>
                 </div>
                 <p className="descriptionSignInHeader">
-                    sing-in or create an account for free to start your journey
+                    sing in or create an account for free to start your journey
                 </p>
                 <div className="singInRegMethodsWrapper">
                     <div className="btnRegLoginWrapper">

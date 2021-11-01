@@ -72,13 +72,18 @@
       letter-spacing: 0.5px;
     }
     .singInRegMethodsWrapper{
+      display: flex;
+      flex-direction: column;
+      height: 45% !important;
+      white-space: nowrap;
       .socialLogin{
+        display: flex;
+        height: 100%;
         letter-spacing: 2px;
         font-size: 130%;
         font-weight: 500;
         padding: 0.3rem;
         width: 100%;
-        display: flex;
         justify-content: center;
         .socialLoginContent{
           font-family: system-ui;
@@ -86,7 +91,7 @@
           display: inline-flex;
           justify-content: space-between;
           align-items: end;
-          width: 40%;
+          width: 45%;
           p{
             font-weight: 800;
             margin: 0;

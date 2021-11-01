@@ -1,24 +1,11 @@
-import React, {useEffect, useRef} from 'react';
-import {Link, useHistory} from "react-router-dom";
+import React from 'react';
+import {Link} from "react-router-dom";
 import ProfilePageModal from "../profilePage/profilePageModal";
 import {connect} from 'react-redux'
 import {logoutAction} from '../../redux/login/loginActions'
-import {useInitSideNav} from "../../hooks/useInitNav";
 
 const NavBarAuth = ({userData, logoutAction}) => {
-	const history = useHistory()
-	const sideNavTrigger = useRef()
-	const dropDownProfile = useRef()
-	
-	useEffect(() => {
-		window.M.Dropdown.init(dropDownProfile.current)
-		const modalElem = document.querySelectorAll('.modal')
-		window.M.Modal.init(modalElem)
-		
-	}, [])
-	useInitSideNav(sideNavTrigger)
-	
-	
+
 	return (
 		<div>
 			<nav>
@@ -36,8 +23,8 @@ const NavBarAuth = ({userData, logoutAction}) => {
 						</Link>
 					</div>
 					
-					<a data-target="mobile-nav" className="sidenav-trigger"><i
-						className="material-icons pointer-event" style={{cursor: 'pointer'}}>menu</i>
+					<a data-target="mobile-nav" className="sidenav-trigger">
+						<i className="material-icons pointer-event" style={{cursor: 'pointer'}}>menu</i>
 					</a>
 					<ul className="right hide-on-med-and-down">
 						<li>
@@ -79,8 +66,6 @@ const NavBarAuth = ({userData, logoutAction}) => {
 							        history.push('/')}>Event Board
 						</button>
 					</div>
-					
-					
 					<div className="ml-2">
 						<button className="btn-flat" onClick={() => logoutAction()}>Logout</button>
 					</div>

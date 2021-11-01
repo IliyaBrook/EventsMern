@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import './homePageAuth.scss'
 import {Button} from "react-bootstrap"
 import {useDispatch} from "react-redux"
-import {HOME_PAGE_LETS_START} from "../../../redux/homePage/homePageReducerTypes"
+import {HOME_PAGE_LETS_START} from "../../../redux/componentLoading/homePageReducerTypes"
 
 const HomePageAuth = () => {
 	const dispatch = useDispatch()
